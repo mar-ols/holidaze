@@ -40,15 +40,13 @@ function Header() {
             />
           </div>
         </div>
-        <section>
-          <img
-            src={Menu}
-            alt="Hamburger menu"
-            id="menu"
-            className="mx-2"
-            onClick={handleShowNav}
-          />
-        </section>
+        <img
+          src={Menu}
+          alt="Hamburger menu"
+          id="menu"
+          className="mx-2"
+          onClick={handleShowNav}
+        />
         <Offcanvas
           show={showNav}
           onHide={handleCloseNav}
