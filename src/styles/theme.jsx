@@ -8,6 +8,7 @@ const theme = {
     secondary: "var(--color-secondary)",
     complimentary: "var(--color-complimentary)",
     info: "var(--color-info)",
+    danger: "var(--color-danger)",
   },
 };
 

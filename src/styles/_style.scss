@@ -1,0 +1,85 @@
+$primary: #375d61;
+$secondary: #fff;
+
+#menu-container {
+  position: absolute;
+}
+
+#menu {
+  position: relative;
+  cursor: pointer;
+  top: 30%;
+}
+
+#hero-image-container {
+  height: 350px;
+  background-image: url("../assets/images/getty-images-Qh33zzBt_bA-unsplash-small.webp");
+  background-size: cover;
+  background-position-x: left;
+  background-position-y: center;
+}
+
+#hero-text-1,
+#hero-text-2 {
+  display: none;
+}
+
+@media (min-width: 450px) {
+  #hero-image-container {
+    height: 550px;
+  }
+
+  #hero-text-1,
+  #hero-text-2 {
+    display: inline;
+    position: relative;
+    font-size: 1.5rem;
+  }
+
+  #hero-text-1 {
+    left: 30%;
+    top: 40%;
+  }
+
+  #hero-text-2 {
+    left: 20%;
+    top: 48%;
+  }
+}
+
+@media (min-width: 600px) {
+  #hero-text-1,
+  #hero-text-2 {
+    font-size: 2rem;
+  }
+
+  #hero-text-1 {
+    left: 40%;
+  }
+
+  #hero-text-2 {
+    left: 25%;
+  }
+}
+
+@media (min-width: 1000px) {
+  #hero-image-container {
+    height: 700px;
+    background-image: url("../assets/images/getty-images-Qh33zzBt_bA-unsplash-without-text.webp");
+  }
+
+  #hero-text-1,
+  #hero-text-2 {
+    font-size: 2.3rem;
+  }
+
+  #hero-text-1 {
+    left: 50%;
+  }
+
+  #hero-text-2 {
+    left: 43%;
+  }
+}
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

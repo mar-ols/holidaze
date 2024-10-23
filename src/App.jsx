@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Layout } from "./components/layout";
 import { Home } from "./pages/home";
 import { Venues } from "./pages/venue";
 import { Venue } from "./pages/venues";
@@ -22,7 +23,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/venues" element={<Venues />} />
           <Route path=":id" element={<Venue />} />
