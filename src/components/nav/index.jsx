@@ -1,14 +1,35 @@
-import { NavLink } from "react-router-dom";
+import { StyledNavLink } from "../../styles/styled-components/nav";
 
-function Nav() {
+/* eslint-disable react/prop-types */
+
+function Nav({ handleCloseNav }) {
   return (
     <>
       <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/venues">Venues</NavLink>
-        <NavLink to=":id">Venue</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
-        <NavLink to="/about">About</NavLink>
+        <StyledNavLink to="/" className="nav-link" onClick={handleCloseNav}>
+          Home
+        </StyledNavLink>
+        <StyledNavLink
+          to="/venues"
+          className=" nav-link"
+          onClick={handleCloseNav}
+        >
+          Venues
+        </StyledNavLink>
+        <StyledNavLink
+          to="/profile"
+          className="nav-link"
+          onClick={handleCloseNav}
+        >
+          Profile
+        </StyledNavLink>
+        <StyledNavLink
+          to="/about"
+          className="nav-link"
+          onClick={handleCloseNav}
+        >
+          About
+        </StyledNavLink>
       </nav>
     </>
   );
