@@ -1,43 +1,55 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function useFetch(endpoint, params = null, token = null, apiKey = null) {
+function useFetch(
+  endpoint,
+  method = "GET",
+  params = null,
+  token = null,
+  apiKey = null
+) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setIsError(false);
+  const fetchData = async (body = null, requestMethod = method) => {
+    setIsLoading(true);
+    setIsError(null);
 
-      const url = params ? `${endpoint}/${params}` : endpoint;
+    const url = params ? `${endpoint}/${params}` : endpoint;
 
-      const headers = {
-        "Content-Type": "application/json",
-        ...(token && { Authorization: `Bearer ${token}` }),
-        ...(apiKey && { "x-api-key": apiKey }),
-      };
-
-      try {
-        const response = await fetch(url, { headers });
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.message || "Something went wrong");
-        }
-
-        setData(result);
-      } catch (error) {
-        setIsError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
+    const headers = {
+      "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(apiKey && { "x-api-key": apiKey }),
     };
 
-    fetchData();
-  }, [endpoint, params, token, apiKey]);
+    const options = {
+      method: requestMethod,
+      headers,
+      ...(body &&
+        requestMethod !== "GET" &&
+        requestMethod !== "HEAD" && { body: JSON.stringify(body) }),
+    };
 
-  return { data, isLoading, isError };
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log(response);
+      console.log(result);
+
+      if (!response.ok) {
+        throw new Error(`${result.errors[0].message}`);
+      }
+
+      setData(result);
+    } catch (error) {
+      setIsError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { data, isLoading, isError, fetchData };
 }
 
 export { useFetch };
