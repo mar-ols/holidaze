@@ -7,7 +7,7 @@ import Rent from "../../assets/icons/rent.png";
 
 function Home() {
   const { data, isLoading, isError, fetchData } = useFetch(
-    "https://v2.api.noroff.dev/holidaze/venues"
+    "https://v2.api.noroff.dev/holidaze/venues?_bookings=true"
   );
 
   useEffect(() => {
@@ -15,10 +15,9 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading) return <div>Loading venues...</div>;
-  if (isError) return <div>Error: {isError}</div>;
-
-  const maxVenues = 3;
+  const topVenues = data?.data
+    ?.sort((a, b) => b.bookings.length - a.bookings.length)
+    .slice(0, 3);
 
   return (
     <>
@@ -79,8 +78,10 @@ function Home() {
         <section className="w-75 m-auto">
           <h3>Popular destinations right now..</h3>
           <div className="d-lg-flex ">
-            {data && data.data && data.data.length > 0 ? (
-              data.data.slice(0, maxVenues).map((venue) => (
+            {isLoading && <p>Loading venues...</p>}
+            {isError && <p>Error: {isError}</p>}
+            {topVenues && topVenues.length > 0 ? (
+              topVenues.map((venue) => (
                 <div key={venue.id} className="popDestinations">
                   <ProductCard
                     className="productCard"
