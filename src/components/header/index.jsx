@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useFetch } from "../api/constant";
 import { Nav } from "../nav";
 import { StyledSearchBar } from "../../styles/styled-components/search/searchbar";
+import { ProductCard } from "../product-card";
 import { ThemedButton } from "../../styles/styled-components/buttons";
 import { StyledModal } from "../../styles/styled-components/forms";
 import { RegisterForm } from "../forms/register";
@@ -11,7 +13,14 @@ import Modal from "react-bootstrap/Modal";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 function Header() {
+  const { data, isLoading, isError, fetchData } = useFetch(
+    "https://v2.api.noroff.dev/holidaze/venues"
+  );
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredVenues, setFilteredVenues] = useState([]);
+  const [showSearchModal, setShowSearchModal] = useState(false);
   const storageUser = JSON.parse(localStorage.getItem("profile"));
 
   useEffect(() => {
@@ -21,9 +30,27 @@ function Header() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("profile");
     setIsLoggedIn(false);
+  };
+
+  const handleSearchSubmit = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (data) {
+        const filtered = data.data.filter((venue) =>
+          venue.name.toLowerCase().includes(searchInput.toLowerCase())
+        );
+        setFilteredVenues(filtered);
+        setShowSearchModal(true);
+      }
+    }
   };
 
   // Log in modal
@@ -80,6 +107,8 @@ function Header() {
               className="d-block"
               placeholder="Search.."
               aria-label="search site"
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyDown={handleSearchSubmit}
             />
           </div>
         </div>
@@ -112,6 +141,32 @@ function Header() {
           <Modal.Title>Register</Modal.Title>
           <Modal.Body>
             <RegisterForm onSuccess={handleAuthSuccess} />
+          </Modal.Body>
+        </StyledModal>
+
+        <StyledModal
+          show={showSearchModal}
+          onHide={() => setShowSearchModal(false)}
+        >
+          <Modal.Header closeButton />
+          <Modal.Title>Search Results</Modal.Title>
+          <Modal.Body>
+            {isLoading && <p>Loading venues...</p>}
+            {isError && <p>Error: {isError}</p>}
+            {filteredVenues.length > 0 ? (
+              filteredVenues.map((venue) => (
+                <ProductCard
+                  key={venue.id}
+                  id={venue.id}
+                  title={venue.name}
+                  image={venue.media[0]?.url || null}
+                  price={venue.price}
+                  maxGuests={venue.maxGuests}
+                />
+              ))
+            ) : (
+              <p>No venues match your search criteria.</p>
+            )}
           </Modal.Body>
         </StyledModal>
       </header>

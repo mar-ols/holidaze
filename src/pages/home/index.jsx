@@ -1,20 +1,23 @@
 import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
-import { Link } from "react-router-dom";
+import { SearchByDate } from "../../components/search/by-date";
+import { ProductCard } from "../../components/product-card";
+import Accommodation from "../../assets/icons/accommodation.png";
+import Rent from "../../assets/icons/rent.png";
 
 function Home() {
   const { data, isLoading, isError, fetchData } = useFetch(
-    "https://v2.api.noroff.dev/holidaze/venues"
+    "https://v2.api.noroff.dev/holidaze/venues?_bookings=true"
   );
 
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(data);
 
-  if (isLoading) return <div>Loading venues...</div>;
-  if (isError) return <div>Error: {isError}</div>;
+  const topVenues = data?.data
+    ?.sort((a, b) => b.bookings.length - a.bookings.length)
+    .slice(0, 3);
 
   return (
     <>
@@ -23,18 +26,79 @@ function Home() {
           <p id="hero-text-1">Your next adventure</p>
           <p id="hero-text-2">starts here..</p>
         </section>
-        <h1>Front page</h1>
-        {data && data.data ? (
-          <div>
-            {data.data.map((venue) => (
-              <Link key={venue.id} to={venue.id}>
-                {venue.name}
-              </Link>
-            ))}
+        <section className="optionsContainer d-sm-flex my-4 mx-auto py-3">
+          <div className="iconsContainer d-flex align-items-center justify-content-around border border-primary rounded my-3 mx-2 p-2">
+            <img
+              src={Accommodation}
+              alt="Icon of a bed and nightstand with a lamp"
+              className="optionsIcons"
+            />
+            <p className="mx-2">Book accommodations</p>
           </div>
-        ) : (
-          <p>No venues available</p>
-        )}
+          <div className="iconsContainer d-flex align-items-center justify-content-around border border-primary rounded my-3 mx-2 p-2">
+            <img
+              src={Rent}
+              alt="Icon of building with a rent sign in front"
+              className="optionsIcons"
+            />
+            <p className="mx-2">Rent out and manage your venues</p>
+          </div>
+        </section>
+        <section className="introContainer d-md-flex justify-content-center m-auto">
+          <SearchByDate />
+          <div className="introText m-auto border-primary border-top border-bottom p-4">
+            <h1>Holidaze Booking</h1>
+            <h2>Why choose us?</h2>
+            <ul>
+              <li>
+                <span className="fw-bold">Easy Booking:</span> Our seamless
+                interface allows you to search, book, and manage your trips with
+                just a few clicks.
+              </li>
+              <li>
+                <span className="fw-bold">Host-Friendly:</span> Own a property?
+                You can easily register and manage your accommodations for rent
+                through our platform.
+              </li>
+              <li>
+                <span className="fw-bold">Customer-Centric:</span> From our
+                responsive customer support to our personalized recommendations,
+                we are always here to make your holiday planning a breeze.
+              </li>
+            </ul>
+            <p>
+              Holidaze is more than just a booking site—it is a community of
+              passionate travelers and dedicated hosts. Whether you are planning
+              a weekend getaway or a month-long adventure, Holidaze is here to
+              help you find the perfect place for your next adventure.
+            </p>
+          </div>
+        </section>
+        <div className="destinationImage my-5"></div>
+        <section className="w-75 m-auto">
+          <h3>Popular destinations right now..</h3>
+          <div className="d-lg-flex ">
+            {isLoading && <p>Loading venues...</p>}
+            {isError && <p>Error: {isError}</p>}
+            {topVenues && topVenues.length > 0 ? (
+              topVenues.map((venue) => (
+                <div key={venue.id} className="popDestinations">
+                  <ProductCard
+                    className="productCard"
+                    key={venue.id}
+                    id={venue.id}
+                    title={venue.name}
+                    image={venue.media[0]?.url || null}
+                    price={venue.price}
+                    maxGuests={venue.maxGuests}
+                  />
+                </div>
+              ))
+            ) : (
+              <p>No available venues available.</p>
+            )}
+          </div>
+        </section>
       </main>
     </>
   );

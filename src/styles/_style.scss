@@ -1,5 +1,6 @@
 $primary: #375d61;
 $secondary: #fff;
+$info: #64a7ae;
 
 #menu-container {
   position: absolute;
@@ -8,7 +9,7 @@ $secondary: #fff;
 #menu {
   position: relative;
   cursor: pointer;
-  top: 30%;
+  top: 15%;
 }
 
 #hero-image-container {
@@ -24,7 +25,53 @@ $secondary: #fff;
   display: none;
 }
 
+.optionsContainer {
+  max-width: fit-content;
+}
+
+.optionsIcons {
+  max-width: 100px;
+}
+
+.iconsContainer {
+  max-width: 400px;
+}
+
+.introContainer {
+  max-width: 90%;
+}
+
+.searchByDateContainer {
+  max-width: 80%;
+}
+
+.introText {
+  max-width: 90%;
+}
+
+.productCard {
+  max-width: 600px;
+}
+
+.productCardImg {
+  height: 320px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.destinationImage {
+  height: 350px;
+  background-image: url("../assets/images/rodion-kutsaiev-3aMwpU5X_DM-unsplash.webp");
+  background-size: cover;
+  background-position-x: right;
+  background-position-y: center;
+}
+
 @media (min-width: 450px) {
+  #menu {
+    top: 20%;
+  }
+
   #hero-image-container {
     height: 550px;
   }
@@ -45,9 +92,17 @@ $secondary: #fff;
     left: 20%;
     top: 48%;
   }
+
+  .searchByDateContainer {
+    max-width: 55%;
+  }
 }
 
 @media (min-width: 600px) {
+  #menu {
+    top: 30%;
+  }
+
   #hero-text-1,
   #hero-text-2 {
     font-size: 2rem;
@@ -59,6 +114,14 @@ $secondary: #fff;
 
   #hero-text-2 {
     left: 25%;
+  }
+
+  .searchByDateContainer {
+    max-width: 40%;
+  }
+
+  .introText {
+    max-width: 80%;
   }
 }
 
@@ -79,6 +142,10 @@ $secondary: #fff;
 
   #hero-text-2 {
     left: 43%;
+  }
+
+  .introText {
+    max-width: 70%;
   }
 }
 
