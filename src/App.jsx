@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/layout";
 import { Home } from "./pages/home";
-import { Venues } from "./pages/venue";
-import { Venue } from "./pages/venues";
+import { Venue } from "./pages/venue";
+import { Venues } from "./pages/venues";
 import { Profile } from "./pages/profile";
 import { About } from "./pages/about";
 import "./styles/App.css";
