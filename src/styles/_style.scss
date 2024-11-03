@@ -68,11 +68,11 @@ $info: #64a7ae;
 }
 
 .venuesContainer {
-  max-width: 1200px;
+  width: 90%;
 }
 
 .venueContainer {
-  max-width: 300px;
+  max-width: 90%;
 }
 
 .venues-img {
@@ -81,6 +81,15 @@ $info: #64a7ae;
   background-size: cover;
   background-position-x: right;
   background-position-y: center;
+}
+
+.facilitiesIcon {
+  max-width: 50px;
+}
+
+.facilities {
+  width: 70%;
+  margin: auto;
 }
 
 @media (min-width: 450px) {
@@ -111,6 +120,17 @@ $info: #64a7ae;
 
   .searchByDateContainer {
     max-width: 55%;
+  }
+
+  .facilitiesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .facilities {
+    width: 50%;
+    margin: auto;
   }
 }
 
@@ -167,6 +187,15 @@ $info: #64a7ae;
   .venuesH1 {
     position: relative;
     top: 45%;
+  }
+
+  .venuesContainer {
+    width: 70%;
+  }
+
+  .facilities {
+    display: flex;
+    justify-content: space-around;
   }
 }
 
