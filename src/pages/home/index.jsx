@@ -22,7 +22,7 @@ function Home() {
   return (
     <>
       <main>
-        <section id="hero-image-container" className="text-primary">
+        <section id="hero-image-container">
           <p id="hero-text-1">Your next adventure</p>
           <p id="hero-text-2">starts here..</p>
         </section>
@@ -82,9 +82,11 @@ function Home() {
             {isError && <p>Error: {isError}</p>}
             {topVenues && topVenues.length > 0 ? (
               topVenues.map((venue) => (
-                <div key={venue.id} className="popDestinations">
+                <div
+                  key={venue.id}
+                  className="popDestinations productCard m-3 rounded"
+                >
                   <ProductCard
-                    className="productCard"
                     key={venue.id}
                     id={venue.id}
                     title={venue.name}

@@ -6,7 +6,7 @@ import DefaultImage from "../../assets/images/default-image.png";
 
 function ProductCard({ id, title, image, price, maxGuests }) {
   return (
-    <div key={id} className="border-primary border-bottom mt-3 mx-2">
+    <div key={id} className="mt-3 mx-2">
       {image ? (
         <Link to={id}>
           <img src={image} alt={title} className="productCardImg" />
