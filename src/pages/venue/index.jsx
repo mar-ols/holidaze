@@ -16,7 +16,6 @@ import NoPetsIcon from "../../assets/icons/no-pets.png";
 
 function Venue() {
   const { id } = useParams();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [bookingMessage, setBookingMessage] = useState("");
   const storageUser = JSON.parse(localStorage.getItem("profile"));
   const token = storageUser?.data.accessToken;
@@ -46,9 +45,6 @@ function Venue() {
 
   useEffect(() => {
     fetchData();
-    if (storageUser) {
-      setIsLoggedIn(true);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -182,25 +178,13 @@ function Venue() {
           <div className=" border-primary border-top my-5"></div>
           <div>
             <p className="fw-bold text-center">Book this venue</p>
-            {isLoggedIn ? (
-              <>
-                <BookingCalendar
-                  bookings={bookings}
-                  maxGuests={data?.data?.maxGuests}
-                  venueId={id}
-                  onBookingSubmit={handleBooking}
-                />
-                {bookingMessage && (
-                  <p className="text-center">{bookingMessage}</p>
-                )}
-              </>
-            ) : (
-              <div>
-                <p className="text-center">
-                  Please log in or register to make a booking.
-                </p>
-              </div>
-            )}
+            <BookingCalendar
+              bookings={bookings}
+              maxGuests={data?.data?.maxGuests}
+              venueId={id}
+              onBookingSubmit={handleBooking}
+            />
+            {bookingMessage && <p className="text-center">{bookingMessage}</p>}
           </div>
         </>
       ) : (
