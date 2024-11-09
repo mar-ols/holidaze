@@ -28,7 +28,6 @@ function LoginForm({ onSuccess }) {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -44,7 +43,6 @@ function LoginForm({ onSuccess }) {
   const onSubmit = async (formData) => {
     await fetchData({ email: formData.email, password: formData.password });
     console.log("Login form data submitted:", formData);
-    reset();
   };
 
   useEffect(() => {
@@ -52,6 +50,7 @@ function LoginForm({ onSuccess }) {
       console.log("Login successful:", data);
       localStorage.setItem("profile", JSON.stringify(data));
       onSuccess();
+      window.location.reload();
     }
 
     if (isError) {
