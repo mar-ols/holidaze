@@ -20,7 +20,7 @@ function useFetch(
     const headers = {
       "Content-Type": "application/json",
       ...(token && { Authorization: `Bearer ${token}` }),
-      ...(apiKey && { "x-api-key": apiKey }),
+      ...(apiKey && { "X-Noroff-API-Key": apiKey }),
     };
 
     const options = {
@@ -34,8 +34,6 @@ function useFetch(
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log(response);
-      console.log(result);
 
       if (!response.ok) {
         throw new Error(`${result.errors[0].message}`);
