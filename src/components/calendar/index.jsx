@@ -10,6 +10,7 @@ function BookingCalendar({ bookings, maxGuests, venueId, onBookingSubmit }) {
   const [guestCount, setGuestCount] = useState(1);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const storageUser = JSON.parse(localStorage.getItem("profile"));
 
   const bookedDates = bookings.flatMap((booking) => {
     const start = new Date(booking.dateFrom);
@@ -64,18 +65,18 @@ function BookingCalendar({ bookings, maxGuests, venueId, onBookingSubmit }) {
           tileDisabled={({ date }) => isDateBooked(date) || date < new Date()}
         />
         <form onSubmit={handleSubmit} className="mb-4">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="bookingName">Name</label>
           <input
             type="text"
-            id="name"
+            id="bookingName"
             className="form-control"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <label htmlFor="email">Email</label>
+          <label htmlFor="bookingEmail">Email</label>
           <input
             type="email"
-            id="email"
+            id="bookingEmail"
             className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -91,9 +92,15 @@ function BookingCalendar({ bookings, maxGuests, venueId, onBookingSubmit }) {
             onChange={(e) => setGuestCount(Number(e.target.value))}
             required
           />
-          <CtaButton type="submit" className="mt-3">
-            Book Now
-          </CtaButton>
+          {!storageUser ? (
+            <CtaButton type="submit" className="mt-3" disabled>
+              Book Now
+            </CtaButton>
+          ) : (
+            <CtaButton type="submit" className="mt-3">
+              Book Now
+            </CtaButton>
+          )}
         </form>
       </div>
     </>
