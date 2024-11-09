@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFetch } from "../../components/api/constant";
 import { useParams } from "react-router-dom";
+import { BookingCalendar } from "../../components/calendar";
+import { API_KEY } from "../../components/api/constant/urls";
 import DefaultImage from "../../assets/images/default-image.png";
 import Star from "../../assets/icons/star-filled.png";
 import BreakfastIcon from "../../assets/icons/breakfast.png";
@@ -14,17 +16,41 @@ import NoPetsIcon from "../../assets/icons/no-pets.png";
 
 function Venue() {
   const { id } = useParams();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [bookingMessage, setBookingMessage] = useState("");
+  const storageUser = JSON.parse(localStorage.getItem("profile"));
+  const token = storageUser?.data.accessToken;
 
   const { data, isLoading, isError, fetchData } = useFetch(
     `https://v2.api.noroff.dev/holidaze/venues/${id}?_bookings=true`
   );
 
+  const { fetchData: makeBooking } = useFetch(
+    "https://v2.api.noroff.dev/holidaze/bookings",
+    "POST",
+    null,
+    token,
+    API_KEY
+  );
+
+  const handleBooking = async (bookingDetails) => {
+    setBookingMessage("");
+
+    try {
+      await makeBooking(bookingDetails);
+      setBookingMessage("Booking successful!");
+    } catch (error) {
+      setBookingMessage(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    if (storageUser) {
+      setIsLoggedIn(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // console.log(data.data.name);
 
   const city = data?.data?.location?.city?.trim()
     ? data.data.location.city
@@ -38,9 +64,7 @@ function Venue() {
   const parking = data?.data?.meta.parking;
   const wifi = data?.data?.meta.wifi;
   const pets = data?.data?.meta.pets;
-
-  // console.log(city);
-
+  const bookings = data?.data?.bookings || [];
   const stars = Array.from({ length: rating });
 
   return (
@@ -150,10 +174,33 @@ function Venue() {
               )}
             </div>
           </div>
-          <div>
+          <div className="pb-2">
             <p className="fw-bold">${data?.data?.price}/night</p>
             <p className="fw-bold">Max. guests: {data?.data?.maxGuests}</p>
             <p>{data?.data?.description}</p>
+          </div>
+          <div className=" border-primary border-top my-5"></div>
+          <div>
+            <p className="fw-bold text-center">Book this venue</p>
+            {isLoggedIn ? (
+              <>
+                <BookingCalendar
+                  bookings={bookings}
+                  maxGuests={data?.data?.maxGuests}
+                  venueId={id}
+                  onBookingSubmit={handleBooking}
+                />
+                {bookingMessage && (
+                  <p className="text-center">{bookingMessage}</p>
+                )}
+              </>
+            ) : (
+              <div>
+                <p className="text-center">
+                  Please log in or register to make a booking.
+                </p>
+              </div>
+            )}
           </div>
         </>
       ) : (
