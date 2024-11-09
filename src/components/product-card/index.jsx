@@ -8,7 +8,7 @@ function ProductCard({ id, title, image, price, maxGuests }) {
   return (
     <div key={id} className="mt-3 mx-2">
       {image ? (
-        <Link to={id}>
+        <Link to={`/${id}`}>
           <img src={image} alt={title} className="productCardImg" />
         </Link>
       ) : (
@@ -19,11 +19,11 @@ function ProductCard({ id, title, image, price, maxGuests }) {
         />
       )}
       <h4>
-        <Link to={id}>{title}</Link>
+        <Link to={`/${id}`}>{title}</Link>
       </h4>
       <p>{price}NOK/night</p>
       <p>Max guests: {maxGuests}</p>
-      <Link to={id}>
+      <Link to={`/${id}`}>
         <CtaButton className="mb-3">View Venue</CtaButton>
       </Link>
     </div>

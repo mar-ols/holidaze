@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useFetch } from "../api/constant";
-import { Nav } from "../nav";
 import { StyledSearchBar } from "../../styles/styled-components/search/searchbar";
+import { StyledNavLink } from "../../styles/styled-components/nav";
 import { ProductCard } from "../product-card";
 import { ThemedButton } from "../../styles/styled-components/buttons";
 import { StyledModal } from "../../styles/styled-components/forms";
@@ -38,6 +38,7 @@ function Header() {
   const handleLogout = () => {
     localStorage.removeItem("profile");
     setIsLoggedIn(false);
+    window.location.reload();
   };
 
   const handleSearchSubmit = (e) => {
@@ -126,7 +127,40 @@ function Header() {
         >
           <Offcanvas.Header closeButton></Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav handleCloseNav={handleCloseNav} />
+            <nav>
+              <StyledNavLink
+                to="/"
+                className="nav-link"
+                onClick={handleCloseNav}
+              >
+                Home
+              </StyledNavLink>
+              <StyledNavLink
+                to="/venues"
+                className=" nav-link"
+                onClick={handleCloseNav}
+              >
+                Venues
+              </StyledNavLink>
+              {isLoggedIn ? (
+                <StyledNavLink
+                  to="/profile"
+                  className="nav-link"
+                  onClick={handleCloseNav}
+                >
+                  Profile
+                </StyledNavLink>
+              ) : (
+                ""
+              )}
+              <StyledNavLink
+                to="/about"
+                className="nav-link"
+                onClick={handleCloseNav}
+              >
+                About
+              </StyledNavLink>
+            </nav>
           </Offcanvas.Body>
         </Offcanvas>
         <StyledModal show={showLogin} onHide={handleCloseLogin}>
