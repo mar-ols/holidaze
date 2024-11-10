@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
-import { ProductCard } from "../../components/product-card";
+import { ProductCard } from "../../components/product-cards/venues";
 
 function Venues() {
   const { data, isLoading, isError, fetchData } = useFetch(

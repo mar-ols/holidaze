@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
 import { SearchByDate } from "../../components/search/by-date";
-import { ProductCard } from "../../components/product-card";
+import { ProductCard } from "../../components/product-cards/venues";
 import Accommodation from "../../assets/icons/accommodation.png";
 import Rent from "../../assets/icons/rent.png";
 

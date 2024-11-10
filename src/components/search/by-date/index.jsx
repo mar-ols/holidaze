@@ -3,7 +3,7 @@ import { useFetch } from "../../api/constant";
 import { SearchForm } from "../../forms/search/by-date";
 import { StyledModal } from "../../../styles/styled-components/forms";
 import { Modal } from "react-bootstrap";
-import { ProductCard } from "../../product-card";
+import { ProductCard } from "../../product-cards/venues";
 
 function SearchByDate() {
   const { data, isLoading, isError, fetchData } = useFetch(
