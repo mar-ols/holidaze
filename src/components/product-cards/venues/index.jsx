@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { CtaButton } from "../../styles/styled-components/buttons";
-import DefaultImage from "../../assets/images/default-image.png";
+import { CtaButton } from "../../../styles/styled-components/buttons";
+import DefaultImage from "../../../assets/images/default-image.png";
 
 /* eslint-disable react/prop-types */
 
