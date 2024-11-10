@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
-import { ProductCard } from "../../components/product-cards/venues";
+import { VenuesProductCard } from "../../components/product-cards/venues";
 
 function Venues() {
   const { data, isLoading, isError, fetchData } = useFetch(
@@ -26,7 +26,7 @@ function Venues() {
               key={venue.id}
               className="venueContainer productCard m-3 rounded"
             >
-              <ProductCard
+              <VenuesProductCard
                 className="productCard"
                 key={venue.id}
                 id={venue.id}

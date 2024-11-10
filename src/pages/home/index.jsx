@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
 import { SearchByDate } from "../../components/search/by-date";
-import { ProductCard } from "../../components/product-cards/venues";
+import { VenuesProductCard } from "../../components/product-cards/venues";
 import Accommodation from "../../assets/icons/accommodation.png";
 import Rent from "../../assets/icons/rent.png";
 
@@ -86,7 +86,7 @@ function Home() {
                   key={venue.id}
                   className="popDestinations productCard m-3 rounded"
                 >
-                  <ProductCard
+                  <VenuesProductCard
                     key={venue.id}
                     id={venue.id}
                     title={venue.name}

@@ -4,7 +4,7 @@ import DefaultImage from "../../../assets/images/default-image.png";
 
 /* eslint-disable react/prop-types */
 
-function ProductCard({ id, title, image, price, maxGuests }) {
+function VenuesProductCard({ id, title, image, price, maxGuests }) {
   return (
     <div key={id} className="mt-3 mx-2">
       {image ? (
@@ -30,4 +30,4 @@ function ProductCard({ id, title, image, price, maxGuests }) {
   );
 }
 
-export { ProductCard };
+export { VenuesProductCard };

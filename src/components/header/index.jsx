@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useFetch } from "../api/constant";
 import { StyledSearchBar } from "../../styles/styled-components/search/searchbar";
 import { StyledNavLink } from "../../styles/styled-components/nav";
-import { ProductCard } from "../product-cards/venues";
+import { VenuesProductCard } from "../product-cards/venues";
 import { ThemedButton } from "../../styles/styled-components/buttons";
 import { StyledModal } from "../../styles/styled-components/forms";
 import { RegisterForm } from "../forms/register";
@@ -189,7 +189,7 @@ function Header() {
             {isError && <p>Error: {isError}</p>}
             {filteredVenues.length > 0 ? (
               filteredVenues.map((venue) => (
-                <ProductCard
+                <VenuesProductCard
                   key={venue.id}
                   id={venue.id}
                   title={venue.name}
