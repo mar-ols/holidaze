@@ -59,6 +59,11 @@ $info: #64a7ae;
   width: 100%;
 }
 
+.userBookingImg {
+  height: 200px;
+  object-fit: cover;
+}
+
 .destinationImage {
   height: 450px;
   background-image: url("../assets/images/rodion-kutsaiev-3aMwpU5X_DM-unsplash.webp");
@@ -99,6 +104,31 @@ $info: #64a7ae;
 
 .react-calendar__tile--active:enabled:hover {
   background: #64a7ae;
+}
+
+.banner-container {
+  position: relative;
+  z-index: -10;
+  margin-bottom: 150px;
+}
+
+.bannerImg {
+  height: 250px;
+}
+
+.avatarContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.userAvatar {
+  max-width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #000;
 }
 
 @media (min-width: 450px) {
