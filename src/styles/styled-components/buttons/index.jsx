@@ -12,15 +12,28 @@ const ThemedButton = styled(Button)`
 
 const CtaButton = styled(Button)`
   background-color: ${(props) => props.theme.color.info};
+  border: 1px solid ${(props) => props.theme.color.info};
   min-width: 80px;
   color: #000;
-  border: none;
   padding: 0.6rem 1.5rem;
 
   &:hover {
-    background-color: #ffe34b;
+    background-color: #fff;
     color: #000;
+    border: 1px solid ${(props) => props.theme.color.info};
   }
 `;
 
-export { ThemedButton, CtaButton };
+const DangerButton = styled(CtaButton)`
+  background-color: ${(props) => props.theme.color.danger};
+  color: #fff;
+  border: 1px solid ${(props) => props.theme.color.danger};
+
+  &:hover {
+    background-color: #fff;
+    color: ${(props) => props.theme.color.danger};
+    border: 1px solid ${(props) => props.theme.color.danger};
+  }
+`;
+
+export { ThemedButton, CtaButton, DangerButton };
