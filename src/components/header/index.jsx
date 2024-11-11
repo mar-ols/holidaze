@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useFetch } from "../api/constant";
+import { useNavigate } from "react-router-dom";
 import { StyledSearchBar } from "../../styles/styled-components/search/searchbar";
 import { StyledNavLink } from "../../styles/styled-components/nav";
 import { VenuesProductCard } from "../product-cards/venues";
@@ -22,6 +23,7 @@ function Header() {
   const [filteredVenues, setFilteredVenues] = useState([]);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const storageUser = JSON.parse(localStorage.getItem("profile"));
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (storageUser) {
@@ -38,7 +40,7 @@ function Header() {
   const handleLogout = () => {
     localStorage.removeItem("profile");
     setIsLoggedIn(false);
-    window.location.reload();
+    navigate("/");
   };
 
   const handleSearchSubmit = (e) => {
