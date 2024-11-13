@@ -1,13 +1,16 @@
 import { useFetch } from "../../components/api/constant";
 import { API_KEY } from "../../components/api/constant/urls";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { UserBookingsProductCard } from "../../components/product-cards/user-bookings";
+import { StyledModal } from "../../styles/styled-components/forms";
+import { Modal } from "react-bootstrap";
+import { EditProfileForm } from "../../components/forms/profile/edit";
 import DefaultBanner from "../../assets/images/rodion-kutsaiev-tRPguWLUBiY-unsplash.webp";
 import DefaultAvatar from "../../assets/images/getty-images-GkcvpZE1w0U-unsplash.webp";
 
 function Profile() {
   const storageProfile = JSON.parse(localStorage.getItem("profile") || "null");
-  const token = storageProfile?.data.accessToken;
+  const token = JSON.parse(localStorage.getItem("token") || "null");
 
   const { data, isLoading, isError, fetchData } = useFetch(
     `https://v2.api.noroff.dev/holidaze/profiles/${storageProfile.data.name}/bookings?_venue=true`,
@@ -33,6 +36,14 @@ function Profile() {
   const avatarImg = storageProfile?.data?.avatar?.url || DefaultAvatar;
   const avatarAlt = storageProfile?.data?.avatar?.alt || "Default avatar";
 
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const handleCloseEditProfile = () => setShowEditProfile(false);
+  const handleShowEditProfile = () => setShowEditProfile(true);
+
+  const handleEditSuccess = () => {
+    handleCloseEditProfile();
+  };
+
   return (
     <main>
       <div className="banner-container">
@@ -42,15 +53,36 @@ function Profile() {
         </div>
       </div>
       <h1 className="text-center">{storageProfile.data.name}</h1>
+      <p className="text-center">
+        <span className="fw-bold">Bio:</span> {storageProfile.data.bio}
+      </p>
+      <p className="text-center">
+        <span
+          role="button"
+          className="text-decoration-underline"
+          onClick={handleShowEditProfile}
+        >
+          Edit profile
+        </span>
+      </p>
+      <StyledModal show={showEditProfile} onHide={handleCloseEditProfile}>
+        <Modal.Header closeButton />
+        <Modal.Title>Edit profile</Modal.Title>
+        <Modal.Body className="m-auto">
+          <EditProfileForm
+            name={storageProfile?.data?.name}
+            onSuccess={handleEditSuccess}
+          />
+        </Modal.Body>
+      </StyledModal>
       <div>
         {isLoading && <p>Loading bookings</p>}
         {isError && <p>Error: {isError}</p>}
-        <h3 className="text-center my-4">Your bookings</h3>
-        {data && data.data && data.data > 0 ? (
-          <div className="row">
+        <h3 className="text-center pt-5 my-4">Your bookings</h3>
+        {data && data.data && data.data.length > 0 ? (
+          <div className="row m-0">
             {data.data.map((booking) => (
               <UserBookingsProductCard
-                className="card col-2"
                 key={booking.id}
                 bookingID={booking.id}
                 id={booking.venue.id}
