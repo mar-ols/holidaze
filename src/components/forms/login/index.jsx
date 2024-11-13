@@ -49,6 +49,7 @@ function LoginForm({ onSuccess }) {
     if (data) {
       console.log("Login successful:", data);
       localStorage.setItem("profile", JSON.stringify(data));
+      localStorage.setItem("token", JSON.stringify(data.data.accessToken));
       onSuccess();
       window.location.reload();
     }
