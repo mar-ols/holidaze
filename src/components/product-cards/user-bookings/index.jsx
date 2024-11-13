@@ -25,8 +25,7 @@ function UserBookingsProductCard({
   price,
   refreshBookings,
 }) {
-  const storageUser = JSON.parse(localStorage.getItem("profile"));
-  const token = storageUser?.data.accessToken;
+  const token = JSON.parse(localStorage.getItem("token") || "null");
 
   const { fetchData, isError } = useFetch(
     `https://v2.api.noroff.dev/holidaze/bookings/${bookingID}`,
@@ -55,7 +54,7 @@ function UserBookingsProductCard({
   const formattedToDate = apiToDate.toLocaleDateString("en-GB");
 
   return (
-    <div className="mx-auto my-3">
+    <div className="mx-auto my-3 col-10 col-md-6 col-lg-4">
       {city?.length > 1 ? <h4>{city}</h4> : <h4>City not specified</h4>}
       <p>
         {formattedFromDate} - {formattedToDate}
