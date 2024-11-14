@@ -3,12 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetch } from "../../api/constant";
 import { API_KEY } from "../../api/constant/urls";
-import {
-  DangerButton,
-  CtaButton,
-} from "../../../styles/styled-components/buttons";
-import { Modal } from "react-bootstrap";
-import { StyledModal } from "../../../styles/styled-components/forms";
+import { DangerButton } from "../../../styles/styled-components/buttons";
+import { DeleteConfirmationModal } from "../../user-messages/remove-confirmation";
 
 /* eslint-disable react/prop-types */
 
@@ -59,7 +55,7 @@ function UserBookingsProductCard({
       <p>
         {formattedFromDate} - {formattedToDate}
       </p>
-      <Card>
+      <Card className="productCard">
         <Card.Body>
           <img src={image} alt={alt} className="card-img-top userBookingImg" />
           <div className="d-flex flex-column justify-content-between">
@@ -78,14 +74,11 @@ function UserBookingsProductCard({
           </div>
         </Card.Body>
       </Card>
-      <StyledModal show={showDeleteConfirm} onHide={handleCloseDeleteConfirm}>
-        <Modal.Header closeButton />
-        <Modal.Title>Are you sure you want to delete?</Modal.Title>
-        <Modal.Body className="m-auto">
-          <DangerButton onClick={handleDelete}>Yes</DangerButton>{" "}
-          <CtaButton onClick={handleCloseDeleteConfirm}>No</CtaButton>
-        </Modal.Body>
-      </StyledModal>
+      <DeleteConfirmationModal
+        showDeleteConfirm={showDeleteConfirm}
+        onClose={handleCloseDeleteConfirm}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 }
