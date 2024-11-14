@@ -5,6 +5,7 @@ import { UserBookingsProductCard } from "../../components/product-cards/user-boo
 import { StyledModal } from "../../styles/styled-components/forms";
 import { Modal } from "react-bootstrap";
 import { EditProfileForm } from "../../components/forms/profile/edit";
+import { ManagerSection } from "../../components/profile/manager-section";
 import DefaultBanner from "../../assets/images/rodion-kutsaiev-tRPguWLUBiY-unsplash.webp";
 import DefaultAvatar from "../../assets/images/getty-images-GkcvpZE1w0U-unsplash.webp";
 
@@ -35,6 +36,7 @@ function Profile() {
   const bannerAlt = storageProfile?.data?.banner?.alt || "Default banner";
   const avatarImg = storageProfile?.data?.avatar?.url || DefaultAvatar;
   const avatarAlt = storageProfile?.data?.avatar?.alt || "Default avatar";
+  const venueManager = storageProfile?.data.venueManager;
 
   const [showEditProfile, setShowEditProfile] = useState(false);
   const handleCloseEditProfile = () => setShowEditProfile(false);
@@ -52,19 +54,25 @@ function Profile() {
           <img src={avatarImg} alt={avatarAlt} className="userAvatar" />
         </div>
       </div>
-      <h1 className="text-center">{storageProfile.data.name}</h1>
-      <p className="text-center">
-        <span className="fw-bold">Bio:</span> {storageProfile.data.bio}
-      </p>
-      <p className="text-center">
-        <span
-          role="button"
-          className="text-decoration-underline"
-          onClick={handleShowEditProfile}
-        >
-          Edit profile
-        </span>
-      </p>
+      <h1 className="text-center py-4">{storageProfile.data.name}</h1>
+      <div className="productCard border rounded col-11 col-md-8 col-lg-4 m-auto p-2">
+        <p>
+          <span className="fw-bold">Venue manager?</span>{" "}
+          {venueManager === false ? <span>No</span> : <span>Yes</span>}
+        </p>
+        <p>
+          <span className="fw-bold">Bio:</span> {storageProfile.data.bio}
+        </p>
+        <p className="text-center">
+          <span
+            role="button"
+            className="text-decoration-underline"
+            onClick={handleShowEditProfile}
+          >
+            Edit profile
+          </span>
+        </p>
+      </div>
       <StyledModal show={showEditProfile} onHide={handleCloseEditProfile}>
         <Modal.Header closeButton />
         <Modal.Title>Edit profile</Modal.Title>
@@ -102,6 +110,7 @@ function Profile() {
           <p className="text-center">No bookings made</p>
         )}
       </div>
+      {venueManager === true ? <ManagerSection /> : ""}
     </main>
   );
 }
