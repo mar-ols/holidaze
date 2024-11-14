@@ -49,7 +49,6 @@ function EditProfileForm({ name, onSuccess }) {
   );
 
   const onSubmit = async (formData) => {
-    // Send all fields, even if blank
     const dataToSend = {
       banner: { url: formData.banner },
       avatar: { url: formData.avatar },
