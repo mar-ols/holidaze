@@ -131,6 +131,11 @@ $info: #64a7ae;
   border: 2px solid #000;
 }
 
+.modal-body {
+  width: 90%;
+  margin: auto;
+}
+
 @media (min-width: 450px) {
   #menu {
     top: 20%;
