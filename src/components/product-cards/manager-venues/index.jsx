@@ -5,6 +5,10 @@ import { useFetch } from "../../api/constant";
 import { API_KEY } from "../../api/constant/urls";
 import { DangerButton } from "../../../styles/styled-components/buttons";
 import { DeleteConfirmationModal } from "../../user-messages/remove-confirmation";
+import { Modal } from "react-bootstrap";
+import { StyledModal } from "../../../styles/styled-components/forms";
+import { UpdateVenue } from "../../forms/profile/venue-manager/update";
+import { VenueBookingsProductCard } from "../venue-bookings";
 
 /* eslint-disable react/prop-types */
 
@@ -31,6 +35,18 @@ function ManagerVenuesProductCard({ id, image, alt, title, refreshVenues }) {
     }
   };
 
+  const [showUpdateVenue, setShowUpdateVenue] = useState(false);
+  const handleCloseUpdateVenue = () => setShowUpdateVenue(false);
+  const handleShowUpdateVenue = () => setShowUpdateVenue(true);
+
+  const handleUpdateVenueSuccess = () => {
+    handleCloseUpdateVenue();
+  };
+
+  const [showVenueBookings, setShowVenueBookings] = useState(false);
+  const handleCloseVenueBookings = () => setShowVenueBookings(false);
+  const handleShowVenueBookings = () => setShowVenueBookings(true);
+
   return (
     <div className="mx-auto my-3 col-10 col-md-6 col-lg-4">
       <Card className="productCard">
@@ -43,12 +59,20 @@ function ManagerVenuesProductCard({ id, image, alt, title, refreshVenues }) {
                 <Link to={`/${id}`}>View venue</Link>
               </p>
               <p>
-                <span className="text-decoration-underline" role="button">
+                <span
+                  className="text-decoration-underline"
+                  role="button"
+                  onClick={handleShowUpdateVenue}
+                >
                   Update venue
                 </span>
               </p>
               <p>
-                <span className="text-decoration-underline" role="button">
+                <span
+                  className="text-decoration-underline"
+                  role="button"
+                  onClick={handleShowVenueBookings}
+                >
                   View bookings for venue
                 </span>
               </p>
@@ -64,6 +88,24 @@ function ManagerVenuesProductCard({ id, image, alt, title, refreshVenues }) {
         onClose={handleCloseDeleteConfirm}
         onConfirm={handleDeleteVenue}
       />
+      <StyledModal show={showUpdateVenue} onHide={handleCloseUpdateVenue}>
+        <Modal.Header closeButton />
+        <Modal.Title>Update venue</Modal.Title>
+        <Modal.Body className="m-auto">
+          <UpdateVenue
+            onSuccess={handleUpdateVenueSuccess}
+            refreshVenues={refreshVenues}
+            id={id}
+          />
+        </Modal.Body>
+      </StyledModal>
+      <StyledModal show={showVenueBookings} onHide={handleCloseVenueBookings}>
+        <Modal.Header closeButton />
+        <Modal.Title>Venue bookings</Modal.Title>
+        <Modal.Body className="m-auto">
+          <VenueBookingsProductCard venueId={id} />
+        </Modal.Body>
+      </StyledModal>
     </div>
   );
 }
