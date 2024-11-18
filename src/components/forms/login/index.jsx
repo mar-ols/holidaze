@@ -33,7 +33,7 @@ function LoginForm({ onSuccess }) {
   });
 
   const { data, isLoading, isError, fetchData } = useFetch(
-    "https://v2.api.noroff.dev/auth/login",
+    "https://v2.api.noroff.dev/auth/login?_holidaze=true",
     "POST",
     null,
     null,
@@ -49,6 +49,7 @@ function LoginForm({ onSuccess }) {
     if (data) {
       console.log("Login successful:", data);
       localStorage.setItem("profile", JSON.stringify(data));
+      localStorage.setItem("token", JSON.stringify(data.data.accessToken));
       onSuccess();
       window.location.reload();
     }

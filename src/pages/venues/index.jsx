@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
-import { ProductCard } from "../../components/product-card";
+import { VenuesProductCard } from "../../components/product-cards/venues";
 
 function Venues() {
   const { data, isLoading, isError, fetchData } = useFetch(
@@ -20,13 +20,13 @@ function Venues() {
       {isLoading && <p>Loading venues...</p>}
       {isError && <p>Error: {isError}</p>}
       {data && data.data ? (
-        <div className="venuesContainer d-flex flex-wrap justify-content-around m-auto">
+        <div className="venuesContainer row d-flex flex-wrap justify-content-around m-auto">
           {data.data.map((venue) => (
             <div
               key={venue.id}
-              className="venueContainer productCard m-3 rounded"
+              className="venueContainer col-10 col-md-5 productCard m-3 rounded"
             >
-              <ProductCard
+              <VenuesProductCard
                 className="productCard"
                 key={venue.id}
                 id={venue.id}

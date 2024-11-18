@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useFetch } from "../api/constant";
+import { useNavigate } from "react-router-dom";
 import { StyledSearchBar } from "../../styles/styled-components/search/searchbar";
 import { StyledNavLink } from "../../styles/styled-components/nav";
-import { ProductCard } from "../product-card";
+import { VenuesProductCard } from "../product-cards/venues";
 import { ThemedButton } from "../../styles/styled-components/buttons";
 import { StyledModal } from "../../styles/styled-components/forms";
 import { RegisterForm } from "../forms/register";
@@ -22,6 +23,7 @@ function Header() {
   const [filteredVenues, setFilteredVenues] = useState([]);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const storageUser = JSON.parse(localStorage.getItem("profile"));
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (storageUser) {
@@ -38,7 +40,7 @@ function Header() {
   const handleLogout = () => {
     localStorage.removeItem("profile");
     setIsLoggedIn(false);
-    window.location.reload();
+    navigate("/");
   };
 
   const handleSearchSubmit = (e) => {
@@ -189,7 +191,7 @@ function Header() {
             {isError && <p>Error: {isError}</p>}
             {filteredVenues.length > 0 ? (
               filteredVenues.map((venue) => (
-                <ProductCard
+                <VenuesProductCard
                   key={venue.id}
                   id={venue.id}
                   title={venue.name}

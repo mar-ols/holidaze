@@ -17,8 +17,7 @@ import NoPetsIcon from "../../assets/icons/no-pets.png";
 function Venue() {
   const { id } = useParams();
   const [bookingMessage, setBookingMessage] = useState("");
-  const storageUser = JSON.parse(localStorage.getItem("profile"));
-  const token = storageUser?.data.accessToken;
+  const token = JSON.parse(localStorage.getItem("token") || "null");
 
   const { data, isLoading, isError, fetchData } = useFetch(
     `https://v2.api.noroff.dev/holidaze/venues/${id}?_bookings=true`
