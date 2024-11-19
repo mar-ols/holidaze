@@ -51,7 +51,13 @@ function ManagerVenuesProductCard({ id, image, alt, title, refreshVenues }) {
     <div className="mx-auto my-3 col-10 col-md-6 col-lg-4">
       <Card className="productCard">
         <Card.Body>
-          <img src={image} alt={alt} className="card-img-top userBookingImg" />
+          <Link to={`/${id}`}>
+            <img
+              src={image}
+              alt={alt}
+              className="card-img-top userBookingImg"
+            />
+          </Link>
           <div className="d-flex flex-column justify-content-between">
             <div>
               <p className="fw-bold">{title}</p>
