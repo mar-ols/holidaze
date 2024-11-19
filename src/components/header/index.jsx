@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useFetch } from "../api/constant";
 import { useNavigate } from "react-router-dom";
 import { StyledSearchBar } from "../../styles/styled-components/search/searchbar";
+import { Link } from "react-router-dom";
 import { StyledNavLink } from "../../styles/styled-components/nav";
 import { VenuesProductCard } from "../product-cards/venues";
 import { ThemedButton } from "../../styles/styled-components/buttons";
@@ -80,7 +81,13 @@ function Header() {
       <header className="bg-primary text-secondary">
         <div className="d-sm-flex justify-content-between">
           <div className="text-center">
-            <img src={Logo} alt="Holidaze logo" className="mt-3 mt-md-4 ms-3" />
+            <Link to="/">
+              <img
+                src={Logo}
+                alt="Holidaze logo"
+                className="mt-3 mt-md-4 ms-3"
+              />
+            </Link>
           </div>
           <div className="text-center d-sm-flex justify-content-around align-items-center me-2 mt-2 mt-sm-5">
             <p id="logged-user" className="m-0">
