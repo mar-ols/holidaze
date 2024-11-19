@@ -48,7 +48,7 @@ function SearchByDate() {
   return (
     <div className="searchByDateContainer bg-info m-auto">
       <SearchForm onSearch={handleSearch} />
-      {isError && <p>Error: {isError}</p>}
+      {isError && <p className="error">{isError}</p>}
       <StyledModal show={showSearchByDateResults} onHide={handleClose}>
         <Modal.Header closeButton />
         <Modal.Title>Search Results</Modal.Title>

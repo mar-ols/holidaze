@@ -93,7 +93,7 @@ function Home() {
                 <Loader />
               </div>
             )}
-            {isError && <p>Error: {isError}</p>}
+            {isError && <p className="error">{isError}</p>}
             {topVenues && topVenues.length > 0 ? (
               topVenues.map((venue) => (
                 <div

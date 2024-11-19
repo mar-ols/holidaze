@@ -70,7 +70,7 @@ function Venue() {
           <Loader />
         </div>
       )}
-      {isError && <p>Error: {isError}</p>}
+      {isError && <p className="error">{isError}</p>}
 
       {data && data.data ? (
         <>

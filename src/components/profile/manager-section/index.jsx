@@ -69,7 +69,7 @@ function ManagerSection() {
             <Loader />
           </div>
         )}
-        {isError && <p>Error: {isError}</p>}
+        {isError && <p className="error">{isError}</p>}
         {venueManagerData && venueManagerData.data ? (
           <div className="row m-0">
             {venueManagerData.data.map((venue) => (

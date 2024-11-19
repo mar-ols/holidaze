@@ -89,7 +89,7 @@ function Profile() {
             <Loader />
           </div>
         )}
-        {isError && <p>Error: {isError}</p>}
+        {isError && <p className="error">{isError}</p>}
         {data && data.data && data.data.length > 0 ? (
           <div className="row m-0">
             {data.data.map((booking) => (

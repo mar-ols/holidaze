@@ -196,7 +196,7 @@ function Header() {
                 <Loader />
               </div>
             )}
-            {isError && <p>Error: {isError}</p>}
+            {isError && <p className="error">{isError}</p>}
             {filteredVenues.length > 0 ? (
               filteredVenues.map((venue) => (
                 <VenuesProductCard
