@@ -42,12 +42,10 @@ function LoginForm({ onSuccess }) {
 
   const onSubmit = async (formData) => {
     await fetchData({ email: formData.email, password: formData.password });
-    console.log("Login form data submitted:", formData);
   };
 
   useEffect(() => {
     if (data) {
-      console.log("Login successful:", data);
       localStorage.setItem("profile", JSON.stringify(data));
       localStorage.setItem("token", JSON.stringify(data.data.accessToken));
       onSuccess();

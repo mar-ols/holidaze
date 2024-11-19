@@ -86,12 +86,10 @@ function CreateVenue({ onSuccess, refreshVenues }) {
     };
 
     await fetchData(dataToSend);
-    console.log("Create venue form data submitted:", dataToSend);
   };
 
   useEffect(() => {
     if (data) {
-      console.log("Creating venue successful:", data);
       onSuccess();
       refreshVenues();
     }
@@ -239,7 +237,7 @@ function CreateVenue({ onSuccess, refreshVenues }) {
         </div>
 
         <CtaButton type="submit">
-          {isLoading ? "Submitting..." : "Submit"}
+          {isLoading ? "Submitting..." : "Create"}
         </CtaButton>
         {isError && <p className="error">{isError}</p>}
       </form>

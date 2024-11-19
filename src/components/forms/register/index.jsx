@@ -70,8 +70,6 @@ function RegisterForm({ onSuccess }) {
 
   useEffect(() => {
     if (registerData) {
-      console.log("Register data:", registerData);
-      console.log("Registration successful, triggering login...");
       loginFetch({
         email: userCredentials.email,
         password: userCredentials.password,
@@ -86,7 +84,6 @@ function RegisterForm({ onSuccess }) {
 
   useEffect(() => {
     if (loginData) {
-      console.log(loginData);
       localStorage.setItem("profile", JSON.stringify(loginData));
       onSuccess();
     } else if (isLoginError) {

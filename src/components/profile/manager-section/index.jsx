@@ -5,6 +5,7 @@ import { CreateVenue } from "../../forms/profile/venue-manager/create";
 import { useFetch } from "../../api/constant";
 import { ManagerVenuesProductCard } from "../../product-cards/manager-venues";
 import { API_KEY } from "../../api/constant/urls";
+import { Loader } from "../../user-messages/loader";
 
 function ManagerSection() {
   const localStorageProfile = JSON.parse(
@@ -43,8 +44,6 @@ function ManagerSection() {
     managerVenues();
   };
 
-  console.log(venueManagerData);
-
   return (
     <div>
       <div className=" border-primary border-top my-5"></div>
@@ -65,7 +64,11 @@ function ManagerSection() {
         </Modal.Body>
       </StyledModal>
       <div className="px-md-3">
-        {isLoading && <p>Loading bookings</p>}
+        {isLoading && (
+          <div>
+            <Loader />
+          </div>
+        )}
         {isError && <p>Error: {isError}</p>}
         {venueManagerData && venueManagerData.data ? (
           <div className="row m-0">

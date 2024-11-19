@@ -57,12 +57,10 @@ function EditProfileForm({ name, onSuccess }) {
     };
 
     await fetchData(dataToSend);
-    console.log("Edit profile form data submitted:", dataToSend);
   };
 
   useEffect(() => {
     if (data) {
-      console.log("Edit successful:", data);
       localStorage.setItem("profile", JSON.stringify(data));
       onSuccess();
     }
@@ -125,7 +123,7 @@ function EditProfileForm({ name, onSuccess }) {
           <span>Yes</span>
         </div>
         <CtaButton type="submit">
-          {isLoading ? "Submitting..." : "Submit"}
+          {isLoading ? "Submitting..." : "Edit"}
         </CtaButton>
         {isError && <p className="error">{isError}</p>}
       </form>

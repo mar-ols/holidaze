@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
 import { VenuesProductCard } from "../../components/product-cards/venues";
+import { Loader } from "../../components/user-messages/loader";
 
 function Venues() {
   const { data, isLoading, isError, fetchData } = useFetch(
@@ -17,7 +18,11 @@ function Venues() {
       <div className="venues-img">
         <h1 className="venuesH1 text-center pt-3">Venues</h1>
       </div>
-      {isLoading && <p>Loading venues...</p>}
+      {isLoading && (
+        <div>
+          <Loader />
+        </div>
+      )}
       {isError && <p>Error: {isError}</p>}
       {data && data.data ? (
         <div className="venuesContainer row d-flex flex-wrap justify-content-around m-auto">

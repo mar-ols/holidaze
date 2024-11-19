@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
 import { SearchByDate } from "../../components/search/by-date";
 import { VenuesProductCard } from "../../components/product-cards/venues";
+import { Loader } from "../../components/user-messages/loader";
 import Accommodation from "../../assets/icons/accommodation.png";
 import Rent from "../../assets/icons/rent.png";
 
@@ -77,14 +78,18 @@ function Home() {
         <div className="destinationImage my-5"></div>
         <section className="w-75 m-auto">
           <h3>Popular destinations right now..</h3>
-          <div className="d-lg-flex ">
-            {isLoading && <p>Loading venues...</p>}
+          <div className="d-lg-flex">
+            {isLoading && (
+              <div>
+                <Loader />
+              </div>
+            )}
             {isError && <p>Error: {isError}</p>}
             {topVenues && topVenues.length > 0 ? (
               topVenues.map((venue) => (
                 <div
                   key={venue.id}
-                  className="popDestinations productCard m-3 rounded"
+                  className="popDestinations productCard m-3 rounded col-4"
                 >
                   <VenuesProductCard
                     key={venue.id}

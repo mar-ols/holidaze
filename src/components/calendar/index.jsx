@@ -49,8 +49,6 @@ function BookingCalendar({ bookings, maxGuests, venueId, onBookingSubmit }) {
       venueId: venueId,
     };
 
-    console.log("Booking payload:", bookingData);
-
     onBookingSubmit(bookingData);
   };
 

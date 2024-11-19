@@ -4,6 +4,7 @@ import { SearchForm } from "../../forms/search/by-date";
 import { StyledModal } from "../../../styles/styled-components/forms";
 import { Modal } from "react-bootstrap";
 import { VenuesProductCard } from "../../product-cards/venues";
+import { Loader } from "../../user-messages/loader";
 
 function SearchByDate() {
   const { data, isLoading, isError, fetchData } = useFetch(
@@ -41,19 +42,22 @@ function SearchByDate() {
       const availableVenues = filterAvailability(data.data, startDate, endDate);
       setFilteredData(availableVenues);
       handleShow();
-      console.log(availableVenues);
     }
   };
 
   return (
     <div className="searchByDateContainer bg-info m-auto">
       <SearchForm onSearch={handleSearch} />
-      {isLoading && <p>Loading...</p>}
       {isError && <p>Error: {isError}</p>}
       <StyledModal show={showSearchByDateResults} onHide={handleClose}>
         <Modal.Header closeButton />
         <Modal.Title>Search Results</Modal.Title>
         <Modal.Body>
+          {isLoading && (
+            <div>
+              <Loader />
+            </div>
+          )}
           {filteredData.length > 0 ? (
             filteredData.map((venue) => (
               <VenuesProductCard

@@ -2,6 +2,7 @@ import Card from "react-bootstrap/Card";
 import { useEffect } from "react";
 import { useFetch } from "../../api/constant";
 import { API_KEY } from "../../api/constant/urls";
+import { Loader } from "../../user-messages/loader";
 
 /* eslint-disable react/prop-types */
 
@@ -26,17 +27,13 @@ function VenueBookingsProductCard({ venueId }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const apiFromDate = new Date(fromDate);
-  // const apiToDate = new Date(toDate);
-
-  // const formattedFromDate = apiFromDate.toLocaleDateString("en-GB");
-  // const formattedToDate = apiToDate.toLocaleDateString("en-GB");
-
-  console.log(data);
-
   return (
     <div>
-      {isLoading && <p>Loading bookings</p>}
+      {isLoading && (
+        <div>
+          <Loader />
+        </div>
+      )}
       {isError && <p>Error: {isError}</p>}
       {data &&
       data.data &&
