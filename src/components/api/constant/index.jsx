@@ -11,11 +11,21 @@ function useFetch(
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
 
-  const fetchData = async (body = null, requestMethod = method) => {
+  const fetchData = async (body = null, requestMethod = method, query = {}) => {
     setIsLoading(true);
     setIsError(null);
 
-    const url = params ? `${endpoint}/${params}` : endpoint;
+    const queryString = Object.keys(query)
+      .map(
+        (key) => `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`
+      )
+      .join("&");
+
+    const url = params
+      ? `${endpoint}/${params}${
+          endpoint.includes("?") ? "&" : "?"
+        }${queryString}`
+      : `${endpoint}${endpoint.includes("?") ? "&" : "?"}${queryString}`;
 
     const headers = {
       "Content-Type": "application/json",
