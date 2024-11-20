@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useFetch } from "../../components/api/constant";
 import { useParams } from "react-router-dom";
 import { BookingCalendar } from "../../components/calendar";
-import { API_KEY } from "../../components/api/constant/urls";
 import { Loader } from "../../components/user-messages/loader";
+const apiKey = import.meta.env.VITE_API_KEY;
 import DefaultImage from "../../assets/images/default-image.png";
 import Star from "../../assets/icons/star-filled.png";
 import BreakfastIcon from "../../assets/icons/breakfast.png";
@@ -29,7 +29,7 @@ function Venue() {
     "POST",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   const handleBooking = async (bookingDetails) => {

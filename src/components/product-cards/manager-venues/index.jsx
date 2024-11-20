@@ -2,13 +2,13 @@ import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { useFetch } from "../../api/constant";
-import { API_KEY } from "../../api/constant/urls";
 import { DangerButton } from "../../../styles/styled-components/buttons";
 import { DeleteConfirmationModal } from "../../user-messages/remove-confirmation";
 import { Modal } from "react-bootstrap";
 import { StyledModal } from "../../../styles/styled-components/forms";
 import { UpdateVenue } from "../../forms/profile/venue-manager/update";
 import { VenueBookingsProductCard } from "../venue-bookings";
+const apiKey = import.meta.env.VITE_API_KEY;
 
 /* eslint-disable react/prop-types */
 
@@ -20,7 +20,7 @@ function ManagerVenuesProductCard({ id, image, alt, title, refreshVenues }) {
     "DELETE",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);

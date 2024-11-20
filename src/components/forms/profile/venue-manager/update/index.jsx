@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CtaButton } from "../../../../../styles/styled-components/buttons";
 import { useFetch } from "../../../../api/constant";
-import { API_KEY } from "../../../../api/constant/urls";
+const apiKey = import.meta.env.VITE_API_KEY;
 
 /* eslint-disable react/prop-types */
 
@@ -67,7 +67,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
     "GET",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   useEffect(() => {
@@ -104,7 +104,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
     "PUT",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   const onSubmit = async (formData) => {

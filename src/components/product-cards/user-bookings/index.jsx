@@ -2,9 +2,9 @@ import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetch } from "../../api/constant";
-import { API_KEY } from "../../api/constant/urls";
 import { DangerButton } from "../../../styles/styled-components/buttons";
 import { DeleteConfirmationModal } from "../../user-messages/remove-confirmation";
+const apiKey = import.meta.env.VITE_API_KEY;
 
 /* eslint-disable react/prop-types */
 
@@ -28,7 +28,7 @@ function UserBookingsProductCard({
     "DELETE",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);

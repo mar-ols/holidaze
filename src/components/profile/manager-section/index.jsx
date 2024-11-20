@@ -4,8 +4,8 @@ import { Modal } from "react-bootstrap";
 import { CreateVenue } from "../../forms/profile/venue-manager/create";
 import { useFetch } from "../../api/constant";
 import { ManagerVenuesProductCard } from "../../product-cards/manager-venues";
-import { API_KEY } from "../../api/constant/urls";
 import { Loader } from "../../user-messages/loader";
+const apiKey = import.meta.env.VITE_API_KEY;
 
 function ManagerSection() {
   const localStorageProfile = JSON.parse(
@@ -24,7 +24,7 @@ function ManagerSection() {
     "GET",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   useEffect(() => {
