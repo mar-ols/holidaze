@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 import { Loader } from "../../components/user-messages/loader";
 import Accommodation from "../../assets/icons/accommodation.png";
 import Rent from "../../assets/icons/rent.png";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Home() {
   const { data, isLoading, isError, fetchData } = useFetch(
-    "https://v2.api.noroff.dev/holidaze/venues?_bookings=true"
+    `${apiUrl}holidaze/venues?_bookings=true`
   );
 
   useEffect(() => {

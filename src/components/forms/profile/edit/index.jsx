@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { CtaButton } from "../../../../styles/styled-components/buttons";
 import { useFetch } from "../../../api/constant";
 const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 /* eslint-disable react/prop-types */
 
@@ -41,7 +42,7 @@ function EditProfileForm({ name, onSuccess }) {
   });
 
   const { data, isLoading, isError, fetchData } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/profiles/${name}`,
+    `${apiUrl}holidaze/profiles/${name}`,
     "PUT",
     null,
     token,

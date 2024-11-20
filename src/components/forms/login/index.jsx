@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CtaButton } from "../../../styles/styled-components/buttons";
 import { useFetch } from "../../api/constant";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 /* eslint-disable react/prop-types */
 
@@ -33,7 +34,7 @@ function LoginForm({ onSuccess }) {
   });
 
   const { data, isLoading, isError, fetchData } = useFetch(
-    "https://v2.api.noroff.dev/auth/login?_holidaze=true",
+    `${apiUrl}auth/login?_holidaze=true`,
     "POST",
     null,
     null,

@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { CtaButton } from "../../../../../styles/styled-components/buttons";
 import { useFetch } from "../../../../api/constant";
 const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 /* eslint-disable react/prop-types */
 
@@ -63,7 +64,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
   });
 
   const { data: fetchVenueData, fetchData: getVenueData } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/profiles/${manager}/venues?_bookings=true`,
+    `${apiUrl}holidaze/profiles/${manager}/venues?_bookings=true`,
     "GET",
     null,
     token,
@@ -100,7 +101,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
   }, [fetchVenueData, reset]);
 
   const { data, isLoading, isError, fetchData } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/venues/${id}`,
+    `${apiUrl}holidaze/venues/${id}`,
     "PUT",
     null,
     token,

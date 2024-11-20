@@ -3,12 +3,13 @@ import { useFetch } from "../../components/api/constant";
 import { VenuesProductCard } from "../../components/product-cards/venues";
 import { Loader } from "../../components/user-messages/loader";
 import { ThemedButton } from "../../styles/styled-components/buttons";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Venues() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { data, isLoading, isError, fetchData } = useFetch(
-    "https://v2.api.noroff.dev/holidaze/venues?_bookings=true"
+    `${apiUrl}holidaze/venues?_bookings=true`
   );
 
   useEffect(() => {

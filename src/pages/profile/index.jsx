@@ -9,13 +9,14 @@ import { Loader } from "../../components/user-messages/loader";
 import DefaultBanner from "../../assets/images/rodion-kutsaiev-tRPguWLUBiY-unsplash.webp";
 import DefaultAvatar from "../../assets/images/getty-images-GkcvpZE1w0U-unsplash.webp";
 const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Profile() {
   const storageProfile = JSON.parse(localStorage.getItem("profile") || "null");
   const token = JSON.parse(localStorage.getItem("token") || "null");
 
   const { data, isLoading, isError, fetchData } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/profiles/${storageProfile.data.name}/bookings?_venue=true`,
+    `${apiUrl}holidaze/profiles/${storageProfile.data.name}/bookings?_venue=true`,
     "GET",
     null,
     token,

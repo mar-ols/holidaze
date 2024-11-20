@@ -9,6 +9,7 @@ import { StyledModal } from "../../../styles/styled-components/forms";
 import { UpdateVenue } from "../../forms/profile/venue-manager/update";
 import { VenueBookingsProductCard } from "../venue-bookings";
 const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 /* eslint-disable react/prop-types */
 
@@ -16,7 +17,7 @@ function ManagerVenuesProductCard({ id, image, alt, title, refreshVenues }) {
   const token = JSON.parse(localStorage.getItem("token") || "null");
 
   const { fetchData, isError } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/venues/${id}`,
+    `${apiUrl}holidaze/venues/${id}`,
     "DELETE",
     null,
     token,

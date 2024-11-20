@@ -5,10 +5,11 @@ import { StyledModal } from "../../../styles/styled-components/forms";
 import { Modal } from "react-bootstrap";
 import { VenuesProductCard } from "../../product-cards/venues";
 import { Loader } from "../../user-messages/loader";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function SearchByDate() {
   const { data, isLoading, isError, fetchData } = useFetch(
-    "https://v2.api.noroff.dev/holidaze/venues?_bookings=true"
+    `${apiUrl}holidaze/venues?_bookings=true`
   );
   const [filteredData, setFilteredData] = useState([]);
   const [showSearchByDateResults, setShowSearchByDateResults] = useState(false);

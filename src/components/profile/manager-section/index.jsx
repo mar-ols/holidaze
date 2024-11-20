@@ -6,6 +6,7 @@ import { useFetch } from "../../api/constant";
 import { ManagerVenuesProductCard } from "../../product-cards/manager-venues";
 import { Loader } from "../../user-messages/loader";
 const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function ManagerSection() {
   const localStorageProfile = JSON.parse(
@@ -20,7 +21,7 @@ function ManagerSection() {
     isLoading,
     isError,
   } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/profiles/${manager}/venues?_bookings=true`,
+    `${apiUrl}holidaze/profiles/${manager}/venues?_bookings=true`,
     "GET",
     null,
     token,

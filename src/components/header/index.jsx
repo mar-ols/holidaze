@@ -10,6 +10,7 @@ import { StyledModal } from "../../styles/styled-components/forms";
 import { RegisterForm } from "../forms/register";
 import { LoginForm } from "../forms/login";
 import { Loader } from "../user-messages/loader";
+const apiUrl = import.meta.env.VITE_API_URL;
 import Logo from "../../assets/images/logo-white.png";
 import Menu from "../../assets/icons/menu.png";
 import Modal from "react-bootstrap/Modal";
@@ -17,7 +18,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 
 function Header() {
   const { data, isLoading, isError, fetchData } = useFetch(
-    "https://v2.api.noroff.dev/holidaze/venues"
+    `${apiUrl}holidaze/venues`
   );
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);

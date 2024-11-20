@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { BookingCalendar } from "../../components/calendar";
 import { Loader } from "../../components/user-messages/loader";
 const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 import DefaultImage from "../../assets/images/default-image.png";
 import Star from "../../assets/icons/star-filled.png";
 import BreakfastIcon from "../../assets/icons/breakfast.png";
@@ -21,11 +22,11 @@ function Venue() {
   const token = JSON.parse(localStorage.getItem("token") || "null");
 
   const { data, isLoading, isError, fetchData } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/venues/${id}?_bookings=true`
+    `${apiUrl}holidaze/venues/${id}?_bookings=true`
   );
 
   const { fetchData: makeBooking } = useFetch(
-    "https://v2.api.noroff.dev/holidaze/bookings",
+    `${apiUrl}holidaze/bookings`,
     "POST",
     null,
     token,

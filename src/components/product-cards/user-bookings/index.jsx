@@ -5,6 +5,7 @@ import { useFetch } from "../../api/constant";
 import { DangerButton } from "../../../styles/styled-components/buttons";
 import { DeleteConfirmationModal } from "../../user-messages/remove-confirmation";
 const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 /* eslint-disable react/prop-types */
 
@@ -24,7 +25,7 @@ function UserBookingsProductCard({
   const token = JSON.parse(localStorage.getItem("token") || "null");
 
   const { fetchData, isError } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/bookings/${bookingID}`,
+    `${apiUrl}holidaze/bookings/${bookingID}`,
     "DELETE",
     null,
     token,

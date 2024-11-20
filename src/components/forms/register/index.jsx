@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { CtaButton } from "../../../styles/styled-components/buttons";
 import { useFetch } from "../../api/constant";
 import { useEffect, useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 /* eslint-disable react/prop-types */
 
@@ -48,14 +49,14 @@ function RegisterForm({ onSuccess }) {
     isLoading: isRegistering,
     isError: isRegisterError,
     fetchData: registerFetch,
-  } = useFetch("https://v2.api.noroff.dev/auth/register", "POST");
+  } = useFetch(`${apiUrl}auth/register`, "POST");
 
   const {
     data: loginData,
     isLoading: isLoggingIn,
     isError: isLoginError,
     fetchData: loginFetch,
-  } = useFetch("https://v2.api.noroff.dev/auth/login", "POST");
+  } = useFetch(`${apiUrl}auth/login`, "POST");
 
   const onSubmit = async (formData) => {
     setUserCredentials({ email: formData.email, password: formData.password });
