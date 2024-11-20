@@ -49,6 +49,8 @@ function Venue() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(data);
+
   const city = data?.data?.location?.city?.trim()
     ? data.data.location.city
     : "City not specified";
@@ -63,6 +65,12 @@ function Venue() {
   const pets = data?.data?.meta.pets;
   const bookings = data?.data?.bookings || [];
   const stars = Array.from({ length: rating });
+
+  useEffect(() => {
+    if (data && data.data && data.data.name) {
+      document.title = `Holidaze - ${data.data.name}`;
+    }
+  }, [data]);
 
   return (
     <main className="venuesContainer mx-auto my-3 px-3">

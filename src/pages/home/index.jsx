@@ -22,6 +22,10 @@ function Home() {
     ?.sort((a, b) => b.bookings.length - a.bookings.length)
     .slice(0, 3);
 
+  useEffect(() => {
+    document.title = "Holidaze - Home";
+  }, []);
+
   return (
     <main>
       <section id="hero-image-container">

@@ -13,6 +13,10 @@ function Venues() {
   );
 
   useEffect(() => {
+    document.title = "Holidaze - Venues";
+  }, []);
+
+  useEffect(() => {
     fetchData(null, "GET", { limit: 100, page: currentPage });
     window.scrollTo({ top: 0, behavior: "smooth" });
     // eslint-disable-next-line react-hooks/exhaustive-deps

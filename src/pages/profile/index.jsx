@@ -32,6 +32,10 @@ function Profile() {
     fetchData();
   };
 
+  useEffect(() => {
+    document.title = "Holidaze - Profile";
+  }, []);
+
   const bannerImg = storageProfile?.data?.banner?.url || DefaultBanner;
   const bannerAlt = storageProfile?.data?.banner?.alt || "Default banner";
   const avatarImg = storageProfile?.data?.avatar?.url || DefaultAvatar;
