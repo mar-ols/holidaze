@@ -59,35 +59,33 @@ function LoginForm({ onSuccess }) {
   }, [data, isError, onSuccess]);
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email:*</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          className="form-control"
-          {...register("email", {
-            required: true,
-          })}
-        />
-        <p>{errors.email?.message}</p>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="email">Email:*</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        className="form-control"
+        {...register("email", {
+          required: true,
+        })}
+      />
+      <p>{errors.email?.message}</p>
 
-        <label htmlFor="password">Password:*</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          className="form-control"
-          {...register("password", { required: true, minLength: 8 })}
-        />
-        <p className="warn">{errors.password?.message}</p>
-        <CtaButton type="submit">
-          {isLoading ? "Logging in..." : "Login"}
-        </CtaButton>
-        {isError && <p className="error">{isError}</p>}
-      </form>
-    </>
+      <label htmlFor="password">Password:*</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        className="form-control"
+        {...register("password", { required: true, minLength: 8 })}
+      />
+      <p className="warn">{errors.password?.message}</p>
+      <CtaButton type="submit">
+        {isLoading ? "Logging in..." : "Login"}
+      </CtaButton>
+      {isError && <p className="error">{isError}</p>}
+    </form>
   );
 }
 
