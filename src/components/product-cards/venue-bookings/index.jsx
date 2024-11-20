@@ -1,8 +1,9 @@
 import Card from "react-bootstrap/Card";
 import { useEffect } from "react";
 import { useFetch } from "../../api/constant";
-import { API_KEY } from "../../api/constant/urls";
 import { Loader } from "../../user-messages/loader";
+const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 /* eslint-disable react/prop-types */
 
@@ -15,11 +16,11 @@ function VenueBookingsProductCard({ venueId }) {
     isError,
     fetchData: venueBookings,
   } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/venues/${venueId}?_bookings=true`,
+    `${apiUrl}holidaze/venues/${venueId}?_bookings=true`,
     "GET",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   useEffect(() => {

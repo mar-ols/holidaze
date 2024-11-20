@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useFetch } from "../../components/api/constant";
 import { useParams } from "react-router-dom";
 import { BookingCalendar } from "../../components/calendar";
-import { API_KEY } from "../../components/api/constant/urls";
 import { Loader } from "../../components/user-messages/loader";
+const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 import DefaultImage from "../../assets/images/default-image.png";
 import Star from "../../assets/icons/star-filled.png";
 import BreakfastIcon from "../../assets/icons/breakfast.png";
@@ -21,15 +22,15 @@ function Venue() {
   const token = JSON.parse(localStorage.getItem("token") || "null");
 
   const { data, isLoading, isError, fetchData } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/venues/${id}?_bookings=true`
+    `${apiUrl}holidaze/venues/${id}?_bookings=true`
   );
 
   const { fetchData: makeBooking } = useFetch(
-    "https://v2.api.noroff.dev/holidaze/bookings",
+    `${apiUrl}holidaze/bookings`,
     "POST",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   const handleBooking = async (bookingDetails) => {
@@ -48,6 +49,8 @@ function Venue() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(data);
+
   const city = data?.data?.location?.city?.trim()
     ? data.data.location.city
     : "City not specified";
@@ -62,6 +65,12 @@ function Venue() {
   const pets = data?.data?.meta.pets;
   const bookings = data?.data?.bookings || [];
   const stars = Array.from({ length: rating });
+
+  useEffect(() => {
+    if (data && data.data && data.data.name) {
+      document.title = `Holidaze - ${data.data.name}`;
+    }
+  }, [data]);
 
   return (
     <main className="venuesContainer mx-auto my-3 px-3">

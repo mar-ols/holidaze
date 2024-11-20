@@ -4,7 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CtaButton } from "../../../../styles/styled-components/buttons";
 import { useFetch } from "../../../api/constant";
-import { API_KEY } from "../../../api/constant/urls";
+const apiKey = import.meta.env.VITE_API_KEY;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 /* eslint-disable react/prop-types */
 
@@ -41,11 +42,11 @@ function EditProfileForm({ name, onSuccess }) {
   });
 
   const { data, isLoading, isError, fetchData } = useFetch(
-    `https://v2.api.noroff.dev/holidaze/profiles/${name}`,
+    `${apiUrl}holidaze/profiles/${name}`,
     "PUT",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   const onSubmit = async (formData) => {
@@ -75,59 +76,57 @@ function EditProfileForm({ name, onSuccess }) {
   }, [reset, currentBanner, currentAvatar, currentBio]);
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="banner">Banner:</label>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="banner">Banner:</label>
+      <input
+        type="url"
+        id="banner"
+        name="banner"
+        className="form-control"
+        {...register("banner")}
+      />
+      <p>{errors.banner?.message}</p>
+
+      <label htmlFor="avatar">Avatar:</label>
+      <input
+        type="url"
+        id="avatar"
+        name="avatar"
+        className="form-control"
+        {...register("avatar")}
+      />
+      <p className="warn">{errors.avatar?.message}</p>
+
+      <label htmlFor="bio">Bio:</label>
+      <textarea
+        id="bio"
+        name="bio"
+        className="form-control"
+        {...register("bio")}
+      />
+      <p className="warn">{errors.bio?.message}</p>
+
+      <label htmlFor="manager">
+        {isVenueManager
+          ? "Would you like to unregister as a venue manager?"
+          : "Would you like to register as a venue manager?"}
+      </label>
+      <div className="d-flex mb-4">
         <input
-          type="url"
-          id="banner"
-          name="banner"
-          className="form-control"
-          {...register("banner")}
+          id="manager"
+          name="manager"
+          className="me-1"
+          type="checkbox"
+          checked={isVenueManager}
+          onChange={(e) => setIsVenueManager(e.target.checked)}
         />
-        <p>{errors.banner?.message}</p>
-
-        <label htmlFor="avatar">Avatar:</label>
-        <input
-          type="url"
-          id="avatar"
-          name="avatar"
-          className="form-control"
-          {...register("avatar")}
-        />
-        <p className="warn">{errors.avatar?.message}</p>
-
-        <label htmlFor="bio">Bio:</label>
-        <textarea
-          id="bio"
-          name="bio"
-          className="form-control"
-          {...register("bio")}
-        />
-        <p className="warn">{errors.bio?.message}</p>
-
-        <label htmlFor="manager">
-          {isVenueManager
-            ? "Would you like to unregister as a venue manager?"
-            : "Would you like to register as a venue manager?"}
-        </label>
-        <div className="d-flex mb-4">
-          <input
-            id="manager"
-            name="manager"
-            className="me-1"
-            type="checkbox"
-            checked={isVenueManager}
-            onChange={(e) => setIsVenueManager(e.target.checked)}
-          />
-          <span>Yes</span>
-        </div>
-        <CtaButton type="submit">
-          {isLoading ? "Submitting..." : "Edit"}
-        </CtaButton>
-        {isError && <p className="error">{isError}</p>}
-      </form>
-    </>
+        <span>Yes</span>
+      </div>
+      <CtaButton type="submit">
+        {isLoading ? "Submitting..." : "Edit"}
+      </CtaButton>
+      {isError && <p className="error">{isError}</p>}
+    </form>
   );
 }
 
