@@ -1,5 +1,4 @@
 import { useFetch } from "../../components/api/constant";
-import { API_KEY } from "../../components/api/constant/urls";
 import { useState, useEffect } from "react";
 import { UserBookingsProductCard } from "../../components/product-cards/user-bookings";
 import { StyledModal } from "../../styles/styled-components/forms";
@@ -9,6 +8,7 @@ import { ManagerSection } from "../../components/profile/manager-section";
 import { Loader } from "../../components/user-messages/loader";
 import DefaultBanner from "../../assets/images/rodion-kutsaiev-tRPguWLUBiY-unsplash.webp";
 import DefaultAvatar from "../../assets/images/getty-images-GkcvpZE1w0U-unsplash.webp";
+const apiKey = import.meta.env.VITE_API_KEY;
 
 function Profile() {
   const storageProfile = JSON.parse(localStorage.getItem("profile") || "null");
@@ -19,7 +19,7 @@ function Profile() {
     "GET",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   useEffect(() => {
