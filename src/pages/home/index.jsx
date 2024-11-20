@@ -98,7 +98,7 @@ function Home() {
             topVenues.map((venue) => (
               <div
                 key={venue.id}
-                className="popDestinations productCard m-3 rounded col-4"
+                className="popDestinations productCard mx-auto m-lg-3 rounded col-12 col-md-8 col-lg-4"
               >
                 <VenuesProductCard
                   key={venue.id}
