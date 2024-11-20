@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useFetch } from "../../components/api/constant";
 import { SearchByDate } from "../../components/search/by-date";
 import { VenuesProductCard } from "../../components/product-cards/venues";
+import { Link } from "react-router-dom";
+import { Loader } from "../../components/user-messages/loader";
 import Accommodation from "../../assets/icons/accommodation.png";
 import Rent from "../../assets/icons/rent.png";
 
@@ -72,19 +74,31 @@ function Home() {
               a weekend getaway or a month-long adventure, Holidaze is here to
               help you find the perfect place for your next adventure.
             </p>
+            <p>
+              But don&apos;t just take our word for it, check out all our
+              exciting venues{" "}
+              <Link to="/venues" className="fw-bold">
+                here
+              </Link>
+              .
+            </p>
           </div>
         </section>
         <div className="destinationImage my-5"></div>
         <section className="w-75 m-auto">
           <h3>Popular destinations right now..</h3>
-          <div className="d-lg-flex ">
-            {isLoading && <p>Loading venues...</p>}
-            {isError && <p>Error: {isError}</p>}
+          <div className="d-lg-flex">
+            {isLoading && (
+              <div>
+                <Loader />
+              </div>
+            )}
+            {isError && <p className="error">{isError}</p>}
             {topVenues && topVenues.length > 0 ? (
               topVenues.map((venue) => (
                 <div
                   key={venue.id}
-                  className="popDestinations productCard m-3 rounded"
+                  className="popDestinations productCard m-3 rounded col-4"
                 >
                   <VenuesProductCard
                     key={venue.id}
@@ -100,6 +114,9 @@ function Home() {
               <p>No available venues available.</p>
             )}
           </div>
+          <h6>
+            <Link to="/venues">View all venues</Link>
+          </h6>
         </section>
       </main>
     </>

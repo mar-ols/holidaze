@@ -57,7 +57,13 @@ function UserBookingsProductCard({
       </p>
       <Card className="productCard">
         <Card.Body>
-          <img src={image} alt={alt} className="card-img-top userBookingImg" />
+          <Link to={`/${id}`}>
+            <img
+              src={image}
+              alt={alt}
+              className="card-img-top userBookingImg"
+            />
+          </Link>
           <div className="d-flex flex-column justify-content-between">
             <div>
               <p className="fw-bold">

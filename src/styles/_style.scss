@@ -1,6 +1,11 @@
 $primary: #375d61;
 $secondary: #fff;
 $info: #64a7ae;
+$danger: #960d0d;
+
+.error {
+  color: $danger;
+}
 
 #menu-container {
   position: absolute;

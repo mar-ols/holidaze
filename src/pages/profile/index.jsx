@@ -1,13 +1,14 @@
 import { useFetch } from "../../components/api/constant";
-import { API_KEY } from "../../components/api/constant/urls";
 import { useState, useEffect } from "react";
 import { UserBookingsProductCard } from "../../components/product-cards/user-bookings";
 import { StyledModal } from "../../styles/styled-components/forms";
 import { Modal } from "react-bootstrap";
 import { EditProfileForm } from "../../components/forms/profile/edit";
 import { ManagerSection } from "../../components/profile/manager-section";
+import { Loader } from "../../components/user-messages/loader";
 import DefaultBanner from "../../assets/images/rodion-kutsaiev-tRPguWLUBiY-unsplash.webp";
 import DefaultAvatar from "../../assets/images/getty-images-GkcvpZE1w0U-unsplash.webp";
+const apiKey = import.meta.env.VITE_API_KEY;
 
 function Profile() {
   const storageProfile = JSON.parse(localStorage.getItem("profile") || "null");
@@ -18,7 +19,7 @@ function Profile() {
     "GET",
     null,
     token,
-    API_KEY
+    apiKey
   );
 
   useEffect(() => {
@@ -29,8 +30,6 @@ function Profile() {
   const refreshBookings = () => {
     fetchData();
   };
-
-  console.log(data);
 
   const bannerImg = storageProfile?.data?.banner?.url || DefaultBanner;
   const bannerAlt = storageProfile?.data?.banner?.alt || "Default banner";
@@ -84,9 +83,13 @@ function Profile() {
         </Modal.Body>
       </StyledModal>
       <div>
-        {isLoading && <p>Loading bookings</p>}
-        {isError && <p>Error: {isError}</p>}
         <h3 className="text-center pt-5 my-4">Your bookings</h3>
+        {isLoading && (
+          <div>
+            <Loader />
+          </div>
+        )}
+        {isError && <p className="error">{isError}</p>}
         {data && data.data && data.data.length > 0 ? (
           <div className="row m-0">
             {data.data.map((booking) => (

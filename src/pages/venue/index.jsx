@@ -3,6 +3,7 @@ import { useFetch } from "../../components/api/constant";
 import { useParams } from "react-router-dom";
 import { BookingCalendar } from "../../components/calendar";
 import { API_KEY } from "../../components/api/constant/urls";
+import { Loader } from "../../components/user-messages/loader";
 import DefaultImage from "../../assets/images/default-image.png";
 import Star from "../../assets/icons/star-filled.png";
 import BreakfastIcon from "../../assets/icons/breakfast.png";
@@ -64,8 +65,12 @@ function Venue() {
 
   return (
     <main className="venuesContainer mx-auto my-3 px-3">
-      {isLoading && <p>Loading venue...</p>}
-      {isError && <p>Error: {isError}</p>}
+      {isLoading && (
+        <div>
+          <Loader />
+        </div>
+      )}
+      {isError && <p className="error">{isError}</p>}
 
       {data && data.data ? (
         <>

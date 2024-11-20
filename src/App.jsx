@@ -5,7 +5,6 @@ import { Venue } from "./pages/venue";
 import { Venues } from "./pages/venues";
 import { Profile } from "./pages/profile";
 import { About } from "./pages/about";
-import "./styles/App.css";
 
 function App() {
   return (

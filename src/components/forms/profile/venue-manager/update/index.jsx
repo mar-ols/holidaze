@@ -81,8 +81,6 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
       const { name, description, price, maxGuests, media, location, meta } =
         venue;
 
-      console.log("Fetched venue data:", venue);
-
       reset({
         venueName: name || "",
         description: description || "",
@@ -134,12 +132,10 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
     };
 
     await fetchData(dataToSend);
-    console.log("Create venue form data submitted:", dataToSend);
   };
 
   useEffect(() => {
     if (data) {
-      console.log("Creating venue successful:", data);
       onSuccess();
       refreshVenues();
     }
@@ -287,7 +283,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         </div>
 
         <CtaButton type="submit">
-          {isLoading ? "Updating..." : "Update"}
+          {isLoading ? "Submitting..." : "Update"}
         </CtaButton>
         {isError && <p className="error">{isError}</p>}
       </form>
