@@ -47,7 +47,7 @@ function ManagerSection() {
 
   return (
     <div>
-      <div className=" border-primary border-top my-5"></div>
+      <div className=" border-primary border-top my-5 w-75 mx-auto"></div>
       <h3 className="text-center">Your venues</h3>
       <h6 className="text-center">
         <span role="button" onClick={handleShowCreateVenue}>
