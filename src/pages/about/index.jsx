@@ -12,7 +12,7 @@ function About() {
 
   return (
     <main>
-      <section className="backgroundImg"></section>
+      <section className="about-img background-image-position background-image-size-450 background-image-position-x-right"></section>
       <section className="d-flex mt-5 aboutText">
         <div className="flex-3">
           <div className="circle"></div>

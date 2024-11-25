@@ -17,12 +17,35 @@ $danger: #960d0d;
   top: 15%;
 }
 
+.background-image-position {
+  background-size: cover;
+  background-position-y: center;
+}
+
+.background-image-position-x-right {
+  background-position-x: right;
+}
+
+.background-image-size-450 {
+  height: 450px;
+}
+
 #hero-image-container {
   height: 350px;
   background-image: url("../assets/images/getty-images-Qh33zzBt_bA-unsplash-small.webp");
-  background-size: cover;
   background-position-x: left;
-  background-position-y: center;
+}
+
+.destination-img {
+  background-image: url("../assets/images/rodion-kutsaiev-3aMwpU5X_DM-unsplash.webp");
+}
+
+.venues-img {
+  background-image: url("../assets/images/getty-images-IE4fW4v5_xE-unsplash.webp");
+}
+
+.about-img {
+  background-image: url("../assets/images/rodion-kutsaiev-tRPguWLUBiY-unsplash.webp");
 }
 
 #hero-text-1,
@@ -30,7 +53,7 @@ $danger: #960d0d;
   display: none;
 }
 
-.optionsContainer {
+.options-container {
   max-width: fit-content;
 }
 
@@ -69,36 +92,12 @@ $danger: #960d0d;
   object-fit: cover;
 }
 
-.destinationImage {
-  height: 450px;
-  background-image: url("../assets/images/rodion-kutsaiev-3aMwpU5X_DM-unsplash.webp");
-  background-size: cover;
-  background-position-x: right;
-  background-position-y: center;
-}
-
 .venuesContainer {
   width: 90%;
 }
 
 .venueContainer {
   max-width: 90%;
-}
-
-.venues-img {
-  height: 450px;
-  background-image: url("../assets/images/getty-images-IE4fW4v5_xE-unsplash.webp");
-  background-size: cover;
-  background-position-x: right;
-  background-position-y: center;
-}
-
-.backgroundImg {
-  height: 450px;
-  background-image: url("../assets/images/rodion-kutsaiev-tRPguWLUBiY-unsplash.webp");
-  background-size: cover;
-  background-position-x: right;
-  background-position-y: center;
 }
 
 .facilitiesIcon {
