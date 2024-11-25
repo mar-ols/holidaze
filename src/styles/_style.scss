@@ -93,6 +93,14 @@ $danger: #960d0d;
   background-position-y: center;
 }
 
+.backgroundImg {
+  height: 450px;
+  background-image: url("../assets/images/rodion-kutsaiev-tRPguWLUBiY-unsplash.webp");
+  background-size: cover;
+  background-position-x: right;
+  background-position-y: center;
+}
+
 .facilitiesIcon {
   max-width: 50px;
 }
@@ -141,6 +149,17 @@ $danger: #960d0d;
   margin: auto;
 }
 
+.circle {
+  width: 150px;
+  height: 150px;
+  background-color: #ffd700;
+  float: left;
+  position: relative;
+  left: -75px;
+  border-radius: 50%;
+  shape-outside: circle(50%);
+}
+
 @media (min-width: 450px) {
   #menu {
     top: 20%;
@@ -181,6 +200,12 @@ $danger: #960d0d;
     width: 50%;
     margin: auto;
   }
+
+  .circle {
+    width: 250px;
+    height: 250px;
+    left: -125px;
+  }
 }
 
 @media (min-width: 600px) {
@@ -207,6 +232,12 @@ $danger: #960d0d;
 
   .introText {
     max-width: 80%;
+  }
+
+  .circle {
+    width: 350px;
+    height: 350px;
+    left: -175px;
   }
 }
 
@@ -245,6 +276,12 @@ $danger: #960d0d;
   .facilities {
     display: flex;
     justify-content: space-around;
+  }
+
+  .circle {
+    width: 350px;
+    height: 350px;
+    left: -175px;
   }
 }
 
