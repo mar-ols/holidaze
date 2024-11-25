@@ -38,7 +38,7 @@ function Venues() {
 
   return (
     <main>
-      <div className="venues-img">
+      <div className="venues-img background-image-position background-image-size-450 background-image-position-x-right">
         <h1 className="venuesH1 text-center pt-3">Venues</h1>
       </div>
       {isLoading && (

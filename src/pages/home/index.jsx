@@ -28,11 +28,11 @@ function Home() {
 
   return (
     <main>
-      <section id="hero-image-container">
+      <section id="hero-image-container" className="background-image-position">
         <p id="hero-text-1">Your next adventure</p>
         <p id="hero-text-2">starts here..</p>
       </section>
-      <section className="optionsContainer d-sm-flex my-4 mx-auto py-3">
+      <section className="options-container d-sm-flex my-4 mx-auto py-3">
         <div className="iconsContainer d-flex align-items-center justify-content-around border border-primary rounded my-3 mx-2 p-2">
           <img
             src={Accommodation}
@@ -88,7 +88,7 @@ function Home() {
           </p>
         </div>
       </section>
-      <div className="destinationImage my-5"></div>
+      <div className="destination-img background-image-position background-image-size-450 background-image-position-x-right my-5"></div>
       <section className="w-75 m-auto">
         <h3>Popular destinations right now..</h3>
         <div className="d-lg-flex">
