@@ -56,7 +56,7 @@ function RegisterForm({ onSuccess }) {
     isLoading: isLoggingIn,
     isError: isLoginError,
     fetchData: loginFetch,
-  } = useFetch(`${apiUrl}auth/login`, "POST");
+  } = useFetch(`${apiUrl}auth/login?_holidaze=true`, "POST");
 
   const onSubmit = async (formData) => {
     setUserCredentials({ email: formData.email, password: formData.password });
@@ -86,6 +86,7 @@ function RegisterForm({ onSuccess }) {
   useEffect(() => {
     if (loginData) {
       localStorage.setItem("profile", JSON.stringify(loginData));
+      localStorage.setItem("token", JSON.stringify(loginData.data.accessToken));
       onSuccess();
     } else if (isLoginError) {
       setLoginError("Login failed. Please check your credentials.");
@@ -102,7 +103,7 @@ function RegisterForm({ onSuccess }) {
         className="form-control"
         {...register("email", { required: true })}
       />
-      <p>{errors.email?.message}</p>
+      <p className="error">{errors.email?.message}</p>
 
       <label htmlFor="name">Username:*</label>
       <input
@@ -112,7 +113,7 @@ function RegisterForm({ onSuccess }) {
         className="form-control"
         {...register("name", { required: true, minLength: 3 })}
       />
-      <p className="warn">{errors.name?.message}</p>
+      <p className="error">{errors.name?.message}</p>
 
       <label htmlFor="password">Password:*</label>
       <input
@@ -122,7 +123,7 @@ function RegisterForm({ onSuccess }) {
         className="form-control"
         {...register("password", { required: true, minLength: 8 })}
       />
-      <p className="warn">{errors.password?.message}</p>
+      <p className="error">{errors.password?.message}</p>
       <label htmlFor="manager">
         Do you want to register as a venue manager?
       </label>
