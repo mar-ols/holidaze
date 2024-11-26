@@ -70,7 +70,7 @@ function LoginForm({ onSuccess }) {
           required: true,
         })}
       />
-      <p>{errors.email?.message}</p>
+      <p className="error">{errors.email?.message}</p>
 
       <label htmlFor="password">Password:*</label>
       <input
@@ -80,7 +80,7 @@ function LoginForm({ onSuccess }) {
         className="form-control"
         {...register("password", { required: true, minLength: 8 })}
       />
-      <p className="warn">{errors.password?.message}</p>
+      <p className="error">{errors.password?.message}</p>
       <CtaButton type="submit">
         {isLoading ? "Logging in..." : "Login"}
       </CtaButton>

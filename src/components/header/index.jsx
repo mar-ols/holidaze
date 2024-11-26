@@ -42,6 +42,7 @@ function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem("profile");
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
     navigate("/");
   };
