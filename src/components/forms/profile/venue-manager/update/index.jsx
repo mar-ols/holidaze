@@ -156,7 +156,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         className="form-control"
         {...register("venueName")}
       />
-      <p>{errors.venueName?.message}</p>
+      <p className="error">{errors.venueName?.message}</p>
 
       <label htmlFor="description">Description:*</label>
       <textarea
@@ -165,7 +165,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         className="form-control"
         {...register("description")}
       />
-      <p className="warn">{errors.description?.message}</p>
+      <p className="error">{errors.description?.message}</p>
 
       <label htmlFor="venuePrice">Price per night:*</label>
       <input
@@ -177,7 +177,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         {...register("venuePrice")}
       />
       <span>$</span>
-      <p className="warn">{errors.venuePrice?.message}</p>
+      <p className="error">{errors.venuePrice?.message}</p>
 
       <label htmlFor="venueGuests">Max. guests allowed:*</label>
       <input
@@ -188,7 +188,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         className="form-control"
         {...register("venueGuests")}
       />
-      <p className="warn">{errors.venueGuests?.message}</p>
+      <p className="error">{errors.venueGuests?.message}</p>
 
       <label htmlFor="venueImg">Venue image:*</label>
       <input
@@ -198,7 +198,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         className="form-control"
         {...register("venueImg")}
       />
-      <p>{errors.venueImg?.message}</p>
+      <p className="error">{errors.venueImg?.message}</p>
 
       <label htmlFor="venueImgAlt">Venue image alt:*</label>
       <input
@@ -208,7 +208,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         className="form-control"
         {...register("venueImgAlt")}
       />
-      <p>{errors.venueImgAlt?.message}</p>
+      <p className="error">{errors.venueImgAlt?.message}</p>
 
       <label htmlFor="venueCity">City:*</label>
       <input
@@ -218,7 +218,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         className="form-control"
         {...register("venueCity")}
       />
-      <p>{errors.venueCity?.message}</p>
+      <p className="error">{errors.venueCity?.message}</p>
 
       <label htmlFor="venueCountry">Country:*</label>
       <input
@@ -228,7 +228,7 @@ function UpdateVenue({ onSuccess, refreshVenues, id }) {
         className="form-control"
         {...register("venueCountry")}
       />
-      <p>{errors.venueCountry?.message}</p>
+      <p className="error">{errors.venueCountry?.message}</p>
 
       <div className="d-flex">
         <input

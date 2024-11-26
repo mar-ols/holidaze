@@ -125,12 +125,13 @@ $danger: #960d0d;
 }
 
 .bannerImg {
-  height: 250px;
+  height: 400px;
+  object-fit: cover;
 }
 
 .avatarContainer {
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   transform: translateX(-50%);
 }

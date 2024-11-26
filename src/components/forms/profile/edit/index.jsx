@@ -85,7 +85,7 @@ function EditProfileForm({ name, onSuccess }) {
         className="form-control"
         {...register("banner")}
       />
-      <p>{errors.banner?.message}</p>
+      <p className="error">{errors.banner?.message}</p>
 
       <label htmlFor="avatar">Avatar:</label>
       <input
@@ -95,7 +95,7 @@ function EditProfileForm({ name, onSuccess }) {
         className="form-control"
         {...register("avatar")}
       />
-      <p className="warn">{errors.avatar?.message}</p>
+      <p className="error">{errors.avatar?.message}</p>
 
       <label htmlFor="bio">Bio:</label>
       <textarea
@@ -104,7 +104,7 @@ function EditProfileForm({ name, onSuccess }) {
         className="form-control"
         {...register("bio")}
       />
-      <p className="warn">{errors.bio?.message}</p>
+      <p className="error">{errors.bio?.message}</p>
 
       <label htmlFor="manager">
         {isVenueManager
