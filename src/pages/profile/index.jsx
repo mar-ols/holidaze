@@ -97,22 +97,27 @@ function Profile() {
         {isError && <p className="error">{isError}</p>}
         {data && data.data && data.data.length > 0 ? (
           <div className="row m-0">
-            {data.data.map((booking) => (
-              <UserBookingsProductCard
-                key={booking.id}
-                bookingID={booking.id}
-                id={booking.venue.id}
-                city={booking.venue.location.city}
-                fromDate={booking.dateFrom}
-                toDate={booking.dateTo}
-                title={booking.venue.name}
-                image={booking.venue.media[0]?.url}
-                alt={booking.venue.media[0]?.alt}
-                guests={booking.guests}
-                price={booking.venue.price}
-                refreshBookings={refreshBookings}
-              />
-            ))}
+            {data.data.map((booking) => {
+              const imageAlt =
+                booking.venue.media[0]?.alt?.trim() || "No alt text";
+
+              return (
+                <UserBookingsProductCard
+                  key={booking.id}
+                  bookingID={booking.id}
+                  id={booking.venue.id}
+                  city={booking.venue.location.city}
+                  fromDate={booking.dateFrom}
+                  toDate={booking.dateTo}
+                  title={booking.venue.name}
+                  image={booking.venue.media[0]?.url}
+                  alt={imageAlt}
+                  guests={booking.guests}
+                  price={booking.venue.price}
+                  refreshBookings={refreshBookings}
+                />
+              );
+            })}
           </div>
         ) : (
           <p className="text-center">No bookings made</p>
