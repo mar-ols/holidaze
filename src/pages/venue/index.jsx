@@ -49,8 +49,6 @@ function Venue() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(data);
-
   const city = data?.data?.location?.city?.trim()
     ? data.data.location.city
     : "City not specified";
